@@ -1,0 +1,47 @@
+/*
+ * src/pages/Accountant.css
+ *
+ * Use this file for any styles that are specifically unique to the Accountant page,
+ * overriding or adding to the general `RolePage.css` styles.
+ *
+ * For now, it can be empty if no specific overrides are needed beyond RolePage.css.
+ */
+
+/* Example: Adjust hero image border for Accountant page only */
+.accountant-page .role-hero-image .role-img {
+  border-color: var(--neon-orange); /* A specific accent for accounting */
+  box-shadow: 0 0 30px var(--neon-orange-faded);
+}
+
+.accountant-page .role-hero-image .role-img:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 40px var(--neon-pink-faded);
+}
+
+/* Example: Specific background for a section */
+.accountant-page .role-pricing-section {
+  background-color: var(--background-color-dark); /* Ensure it contrasts if previous section is light */
+}
+
+/* Adjust colors for specific elements if needed for this role */
+.accountant-page .pricing-card h3 {
+  color: var(--neon-pink); /* Use a specific accent color for pricing titles */
+}
+
+.accountant-page .stat-item .animated-number-container {
+  color: var(--neon-orange); /* Different color for stats if desired */
+}
+.accountant-page .stat-item .stat-unit {
+  color: var(--neon-orange);
+}
+
+/* Ensure the timeline dot color is consistent or specifically set */
+.accountant-page .timeline-dot {
+  background-color: var(--neon-pink); /* Specific dot color for accountant timeline */
+  border-color: var(--background-color-light); /* Match background */
+}
+
+.accountant-page .timeline-content:hover {
+  border-color: var(--neon-orange); /* Specific hover border for timeline content */
+  box-shadow: 0 8px 15px var(--neon-orange-faded);
+}

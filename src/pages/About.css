@@ -1,0 +1,219 @@
+.about-page {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+  background: var(--background-color-dark);
+}
+
+.about-hero {
+  padding: 88px var(--padding-x) 40px;
+  max-width: 980px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.about-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin-bottom: 18px;
+}
+
+.about-hero p {
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.brands-strip {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--padding-x) 30px;
+  background: transparent;
+}
+
+.brands-label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-color-muted);
+}
+
+.brand-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.brand-pill {
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--text-color-light);
+  background: var(--card-background);
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brand-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-green);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.brand-pill-icon {
+  color: var(--neon-green);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.about-page .common-section {
+  background: transparent;
+}
+
+.skills-strip h2 {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.about-career-section {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.about-career-block + .about-career-block {
+  margin-top: 30px;
+}
+
+.about-career-title {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.about-career-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding: 8px 0;
+}
+
+.about-career-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background-color: var(--border-color);
+  transform: translateX(-2px);
+  border-radius: 2px;
+}
+
+.about-career-item {
+  position: relative;
+  display: flex;
+  margin-bottom: 26px;
+}
+
+.about-career-item:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.about-career-item:nth-child(even) {
+  flex-direction: row;
+}
+
+.about-career-dot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--neon-purple);
+  border: 3px solid var(--background-color-dark);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 10px var(--neon-purple-faded);
+}
+
+.about-career-item:nth-child(odd) .about-career-content {
+  margin-left: auto;
+  margin-right: calc(50% + 20px);
+}
+
+.about-career-item:nth-child(even) .about-career-content {
+  margin-right: auto;
+  margin-left: calc(50% + 20px);
+}
+
+.about-career-content {
+  width: calc(50% - 40px);
+  padding: 16px 18px;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.about-career-content:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-green);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26);
+}
+
+.about-career-content h3 {
+  margin: 0 0 6px;
+}
+
+.about-career-content p,
+.about-career-content small {
+  margin: 0;
+  color: var(--text-color-muted);
+}
+
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 18px;
+  justify-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  .about-skills-grid {
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding-top: var(--navbar-height-mobile);
+  }
+  .about-career-timeline::before {
+    left: 20px;
+    transform: translateX(0);
+  }
+  .about-career-dot {
+    left: 20px;
+  }
+  .about-career-item {
+    flex-direction: row !important;
+  }
+  .about-career-item .about-career-content {
+    width: calc(100% - 60px);
+    margin-left: 60px !important;
+    margin-right: 0 !important;
+  }
+  .brand-pill {
+    font-size: 0.8rem;
+    padding: 7px 12px;
+  }
+  .brand-pill-icon {
+    font-size: 0.8rem;
+  }
+  .about-skills-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}

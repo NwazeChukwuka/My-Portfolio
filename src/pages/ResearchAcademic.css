@@ -1,0 +1,145 @@
+/*
+ * src/pages/ResearchAcademic.css
+ *
+ * Use this file for any styles that are specifically unique to the Research & Academic page,
+ * overriding or adding to the general `RolePage.css` styles.
+ */
+
+/* Example: Adjust hero image border for Research & Academic page only */
+.research-academic-page .role-hero-image .role-img {
+  border-color: var(--neon-pink); /* A specific accent for research/academic */
+  box-shadow: 0 0 30px var(--neon-pink-faded);
+}
+
+.research-academic-page .role-hero-image .role-img:hover {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 40px var(--neon-purple-faded);
+}
+
+/* Adjust colors for specific elements if needed for this role */
+.research-academic-page .research-area-card h3 {
+  color: var(--neon-orange); /* Accent color for research area titles */
+}
+
+.research-academic-page .stat-item .animated-number-container {
+  color: var(--neon-green); /* Different color for stats if desired */
+}
+
+.research-academic-page .stat-item .stat-unit {
+  color: var(--neon-green);
+}
+
+/* Ensure the timeline dot color is consistent or specifically set */
+.research-academic-page .timeline-dot {
+  background-color: var(--neon-pink); /* Specific dot color for academic timeline */
+  border-color: var(--background-color-dark); /* Match background */
+}
+
+.research-academic-page .timeline-content:hover {
+  border-color: var(--neon-green); /* Specific hover border for timeline content */
+  box-shadow: 0 8px 15px var(--neon-green-faded);
+}
+
+/* --- Research Areas Section Specific Styles --- */
+.research-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.research-area-card {
+  background-color: var(--card-background);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.research-area-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px var(--neon-pink-faded);
+  border-color: var(--neon-pink);
+}
+
+.research-area-card .card-icon {
+  font-size: 3.5em;
+  color: var(--neon-purple);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.research-area-card h3 {
+  font-size: 1.5em;
+  color: var(--text-color-light);
+  margin-bottom: 15px;
+}
+
+.research-area-card p {
+  font-size: 1em;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* --- Call To Action Section (for Collaboration) --- */
+.role-cta-section {
+  padding: 80px var(--padding-x);
+  background: linear-gradient(135deg, var(--neon-purple-faded), var(--neon-pink-faded));
+  text-align: center;
+  margin-top: 0; /* No margin-top as it's a section */
+}
+
+.role-cta-section .section-title {
+  color: #fff; /* White text on gradient background */
+}
+
+.role-cta-section .section-title::after {
+  background: #fff; /* White underline */
+}
+
+.role-cta-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure buttons stand out on this background */
+.role-cta-section .button.button-primary {
+  background-color: var(--background-color-dark); /* Dark button */
+  color: var(--neon-green);
+  border-color: var(--neon-green);
+}
+
+.role-cta-section .button.button-primary:hover {
+  background-color: var(--background-color-light);
+  color: var(--neon-orange);
+  border-color: var(--neon-orange);
+}
+
+
+/* Responsive Adjustments for Research & Academic */
+@media (max-width: 768px) {
+  .research-areas-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .research-area-card {
+    padding: 25px;
+  }
+  .research-area-card .card-icon {
+    font-size: 3em;
+  }
+  .research-area-card h3 {
+    font-size: 1.3em;
+  }
+  .research-area-card p {
+    font-size: 0.9em;
+  }
+}

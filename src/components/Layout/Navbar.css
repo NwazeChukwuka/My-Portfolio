@@ -1,0 +1,265 @@
+/*
+ * src/components/Layout/Navbar.css
+ *
+ * Styles for the main navigation bar, including responsive menu
+ * and dropdown for roles.
+ */
+
+.navbar {
+  background-color: var(--navbar-background);
+  height: var(--navbar-height); /* Defined in variables for consistency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: fixed; /* Keep navbar fixed at the top */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above other content */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--border-color);
+  -webkit-backdrop-filter: blur(8px); /* Frosted glass effect */
+  backdrop-filter: blur(8px);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--navbar-height);
+  max-width: var(--max-width); /* Use max-width for content */
+  width: 100%;
+  padding: 0 var(--padding-x);
+}
+
+.navbar-logo {
+  color: var(--neon-green);
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+  color: var(--neon-pink);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin-right: -22px; /* Adjust if needed to align right */
+}
+
+.nav-item {
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  position: relative; /* For dropdown positioning */
+}
+
+.nav-links {
+  color: var(--text-color-light);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  transition: all 0.3s ease-out;
+  font-weight: 500;
+}
+
+.nav-links:hover,
+.nav-links.active { /* 'active' class from NavLink */
+  color: var(--neon-pink);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px var(--neon-pink-faded);
+}
+
+/* Dropdown specific styles */
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between text and caret icon */
+}
+
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Position below the parent nav-item */
+  left: 0;
+  background-color: var(--card-background);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  list-style: none;
+  min-width: 180px;
+  z-index: 10; /* Ensure dropdown is above other content */
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* For rounded corners with inner items */
+  padding: 10px 0;
+}
+
+.dropdown-menu.active {
+  display: block; /* Show when active */
+  animation: fadeInDropdown 0.2s ease-out forwards;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.dropdown-item {
+  width: 100%;
+}
+
+.dropdown-links {
+  color: var(--text-color);
+  padding: 12px 20px;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 400;
+}
+
+.dropdown-links:hover {
+  background-color: var(--dark-grey-3);
+  color: var(--neon-purple);
+  padding-left: 25px; /* Slight indent on hover */
+}
+
+.dropdown-links.active { /* When dropdown link is active */
+  background-color: var(--neon-purple-faded);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+  display: none; /* Hidden on desktop */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-color-light);
+}
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 992px) {
+  .navbar {
+    height: var(--navbar-height-mobile); /* Shorter height for mobile */
+  }
+
+  .navbar-container {
+    padding: 0 var(--padding-x-mobile);
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto; /* Adjust height dynamically */
+    position: absolute;
+    top: var(--navbar-height-mobile); /* Position below the navbar */
+    left: -100%; /* Start off-screen */
+    opacity: 1;
+    transition: all 0.5s ease;
+    background-color: var(--navbar-background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+
+  .nav-menu.active {
+    left: 0; /* Slide in */
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto; /* Adjust height for stacked items */
+    padding: 10px 0; /* Add padding for mobile touch targets */
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-links:hover,
+  .nav-links.active {
+    background-color: var(--dark-grey-3);
+    border-radius: 8px; /* For mobile hover effect */
+    margin: 0 10px;
+    transform: none; /* No translateY for mobile */
+  }
+
+  .menu-icon {
+    display: block; /* Show on mobile */
+  }
+
+  /* Mobile Dropdown styles */
+  .nav-item.dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static; /* Stack dropdown items normally */
+    background-color: var(--background-color-dark); /* Slightly darker for distinction */
+    width: 90%; /* Occupy most of the width */
+    margin: 10px auto 0; /* Center it */
+    border: none; /* No border for mobile dropdown */
+    box-shadow: none; /* No shadow */
+    border-radius: 8px;
+    padding: 0; /* Remove top/bottom padding */
+    display: none; /* Control display via JS class */
+  }
+
+  .dropdown-menu.active {
+    display: block;
+    animation: none; /* No animation for mobile dropdown */
+  }
+
+  .dropdown-links {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+
+  .dropdown-links:hover {
+    padding-left: 20px; /* Remove extra indent for mobile */
+  }
+
+  .dropdown-toggle {
+    width: 100%;
+    justify-content: center; /* Center content */
+    padding: 15px 0;
+  }
+}
+
+/* For very small phones */
+@media screen and (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.6rem;
+  }
+}

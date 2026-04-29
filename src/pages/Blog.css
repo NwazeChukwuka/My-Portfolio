@@ -1,0 +1,159 @@
+/*
+ * src/pages/Blog.css
+ *
+ * Styles for the main Blog List page.
+ * Reuses some common styles from `RolePage.css` and `Portfolio.css`.
+ */
+
+.blog-page {
+  padding-top: var(--navbar-height); /* Offset for fixed navbar */
+  color: var(--text-color);
+  background-color: var(--background-color-dark);
+}
+
+/* --- Re-using common styles from Portfolio.css and RolePage.css --- */
+/* The .common-section, .page-title, .page-subtitle styles are assumed
+   to be either globally available or explicitly imported/defined.
+   For consistency, ensure these are either in a global stylesheet
+   or copied to both Portfolio.css and Blog.css. */
+
+.blog-hero-section {
+  position: relative;
+  padding: 100px var(--padding-x) 80px;
+  background: var(--background-color-dark);
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.blog-hero-content {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-hero-section .page-title {
+  margin-bottom: 20px;
+  font-size: 3.8em;
+}
+
+.blog-hero-section .page-subtitle {
+  font-size: 1.5em;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* --- Blog Filter Section (re-using portfolio styles) --- */
+.blog-filter-section {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  background-color: var(--background-color-light);
+}
+
+.blog-filter-section .filter-buttons { /* Target specific filter buttons */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-filter-section .filter-button {
+  background-color: var(--card-background);
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color);
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 1.05em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.blog-filter-section .filter-button:hover {
+  background-color: var(--neon-purple);
+  border-color: var(--neon-purple);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-filter-section .filter-button.active {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+  border-color: var(--neon-pink);
+  color: #fff;
+  box-shadow: 0 5px 20px var(--neon-purple-faded);
+  transform: translateY(-2px);
+}
+
+
+/* --- Blog Articles Grid (re-using project grid styles) --- */
+.blog-articles-grid {
+  padding-top: 50px;
+}
+
+.articles-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-articles-message {
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--text-color-muted);
+  padding: 50px 0;
+}
+
+
+/* --- Responsive Adjustments for Blog Page --- */
+@media (max-width: 768px) {
+  .blog-page {
+    padding-top: var(--navbar-height-mobile);
+  }
+  .common-section {
+    padding: 60px var(--padding-x-mobile);
+  }
+  .blog-hero-section .page-title {
+    font-size: 3em;
+  }
+  .blog-hero-section .page-subtitle {
+    font-size: 1.3em;
+  }
+
+  .blog-filter-section .filter-buttons {
+    gap: 10px;
+  }
+  .blog-filter-section .filter-button {
+    padding: 8px 20px;
+    font-size: 1em;
+  }
+  .articles-grid-container {
+    grid-template-columns: 1fr; /* Stack articles vertically on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .common-section {
+    padding: 40px var(--padding-x-mobile);
+  }
+  .blog-hero-section .page-title {
+    font-size: 2.5em;
+  }
+  .blog-hero-section .page-subtitle {
+    font-size: 1.1em;
+  }
+
+  .blog-filter-section .filter-button {
+    padding: 7px 15px;
+    font-size: 0.9em;
+  }
+}

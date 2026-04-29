@@ -1,0 +1,41 @@
+/*
+ * src/pages/DataAnalyst.css
+ *
+ * Use this file for any styles that are specifically unique to the Data Analyst page,
+ * overriding or adding to the general `RolePage.css` styles.
+ */
+
+/* Example: Adjust hero image border for Data Analyst page only */
+.data-analyst-page .role-hero-image .role-img {
+  border-color: var(--neon-purple); /* A specific accent for data analysis */
+  box-shadow: 0 0 30px var(--neon-purple-faded);
+}
+
+.data-analyst-page .role-hero-image .role-img:hover {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 40px var(--neon-green-faded);
+}
+
+/* Adjust colors for specific elements if needed for this role */
+.data-analyst-page .pricing-card h3 {
+  color: var(--neon-purple); /* Use a specific accent color for pricing titles */
+}
+
+.data-analyst-page .stat-item .animated-number-container {
+  color: var(--neon-pink); /* Different color for stats if desired */
+}
+
+.data-analyst-page .stat-item .stat-unit {
+  color: var(--neon-pink);
+}
+
+/* Ensure the timeline dot color is consistent or specifically set */
+.data-analyst-page .timeline-dot {
+  background-color: var(--neon-purple); /* Specific dot color for data analyst timeline */
+  border-color: var(--background-color-light); /* Match background */
+}
+
+.data-analyst-page .timeline-content:hover {
+  border-color: var(--neon-pink); /* Specific hover border for timeline content */
+  box-shadow: 0 8px 15px var(--neon-pink-faded);
+}

@@ -1,0 +1,86 @@
+/*
+ * src/components/UI/Button.css
+ *
+ * Styles for the Button component.
+ * Defines base button styles, and distinct styles for 'primary' and 'secondary' variants.
+ * Includes interactive hover and active states, and disabled styling.
+ */
+
+.btn {
+  /* --- Base Button Styles --- */
+  padding: 12px 25px; /* Comfortable padding */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1em; /* Standard font size */
+  font-weight: 600; /* Bold text */
+  cursor: pointer; /* Indicate clickable element */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline for link-buttons */
+  display: inline-block; /* Allow padding and sizing like a block, but sit inline */
+  min-width: 150px; /* Ensure minimum width for consistency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+
+  /* Smooth transition for all interactive properties */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- Primary Button Variant --- */
+.primary-btn {
+  background-color: var(--neon-pink); /* Vibrant pink background */
+  color: var(--background-color-dark); /* Dark text for contrast */
+  border: 1px solid var(--neon-pink); /* Matching border */
+}
+
+.primary-btn:hover {
+  background-color: var(--neon-purple); /* Change to purple on hover */
+  border-color: var(--neon-purple); /* Matching border */
+  color: var(--text-color-light); /* Light text on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 8px 15px var(--neon-purple-faded); /* Stronger glow shadow */
+}
+
+.primary-btn:active {
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Softer shadow when pressed */
+  background-color: var(--neon-pink); /* Revert to pink when active */
+  border-color: var(--neon-pink);
+}
+
+/* --- Secondary Button Variant --- */
+.secondary-btn {
+  background-color: transparent; /* Transparent background */
+  color: var(--neon-green); /* Neon green text */
+  border: 1px solid var(--neon-green); /* Neon green border */
+}
+
+.secondary-btn:hover {
+  background-color: var(--neon-green); /* Fill with green on hover */
+  color: var(--background-color-dark); /* Dark text on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 8px 15px var(--neon-green-faded); /* Stronger glow shadow */
+}
+
+.secondary-btn:active {
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Softer shadow when pressed */
+  background-color: transparent; /* Revert to transparent when active */
+  color: var(--neon-green);
+}
+
+/* --- Disabled Button State --- */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.6; /* Dim the button */
+  cursor: not-allowed; /* Indicate non-clickable */
+  transform: none; /* Remove hover effects */
+  box-shadow: none; /* Remove hover shadows */
+  pointer-events: none; /* Prevents click events on disabled links */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+  .btn {
+    padding: 10px 20px; /* Slightly smaller padding for small screens */
+    font-size: 0.9em; /* Smaller font size */
+    min-width: 120px; /* Smaller min-width */
+  }
+}

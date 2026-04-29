@@ -1,0 +1,540 @@
+/*
+ * src/pages/RolePage.css
+ *
+ * This file contains general styling applicable to all professional role pages
+ * (Accountant, Web Developer, Data Analyst, Research & Academic).
+ * It promotes consistency and reduces redundancy.
+ */
+
+.role-page {
+  padding-top: var(--navbar-height); /* Offset for fixed navbar */
+  color: var(--text-color);
+  background-color: var(--background-color-dark);
+}
+
+/* Common Section Styles (re-iterated for clarity, but already in Home.css) */
+.common-section {
+  padding: 80px var(--padding-x);
+  background-color: var(--background-color-dark);
+}
+
+.common-section:nth-of-type(odd) { /* Apply alternating background to specific sections */
+  background-color: var(--background-color-light);
+}
+
+.section-title {
+  font-size: 2.8em;
+  color: var(--text-color-light);
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.2em;
+  color: var(--text-color-muted);
+  text-align: center;
+  margin-bottom: 50px;
+  font-style: italic;
+}
+
+.section-action {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.learn-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--neon-green);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.learn-more-link:hover {
+  color: var(--neon-orange);
+  transform: translateX(5px);
+}
+
+.learn-more-link svg {
+  transition: transform 0.3s ease;
+}
+
+
+/* --- Role Hero Section --- */
+.role-hero-section {
+  position: relative;
+  padding: 100px var(--padding-x) 80px;
+  background: var(--background-color-dark);
+  min-height: calc(80vh - var(--navbar-height)); /* Slightly shorter than home hero */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center; /* Default for mobile */
+}
+
+.role-hero-content {
+  display: flex;
+  flex-direction: column; /* Stack vertically on mobile first */
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.role-hero-text {
+  text-align: center;
+  flex: 1;
+}
+
+.role-hero-text .role-greeting {
+  font-size: 1.2em;
+  color: var(--neon-green);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.role-hero-title {
+  font-size: 3.2em;
+  color: var(--text-color-light);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.role-hero-bio {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: var(--text-color);
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.role-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.role-hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-hero-image .role-img {
+  width: 350px;
+  height: 350px;
+  border-radius: 12px; /* Square with rounded corners */
+  object-fit: cover;
+  border: 5px solid var(--neon-purple); /* Accent border */
+  box-shadow: 0 0 30px var(--neon-purple-faded);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.role-hero-image .role-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px var(--neon-pink-faded);
+}
+
+
+/* --- Services Grid (from Home.css, but ensure it's here or properly imported) --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Projects Grid (from Home.css, ensure consistency) --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Stats Section --- */
+.role-stats-section {
+  background-color: var(--background-color-dark); /* Ensure contrast */
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1 1 200px; /* Allows flexibility, but min width of 200px */
+  background-color: var(--card-background);
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px var(--neon-purple-faded);
+  border-color: var(--neon-purple);
+}
+
+.stat-item .animated-number-container {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: var(--neon-green);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.stat-item .animated-number-container .animated-number {
+  line-height: 1; /* Keep number and unit aligned */
+}
+
+.stat-item .stat-unit {
+  font-size: 0.8em;
+  color: var(--neon-green);
+  margin-left: 5px;
+  align-self: flex-end; /* Align unit to bottom of number */
+}
+
+.stat-item .stat-label {
+  font-size: 1.1em;
+  color: var(--text-color-light);
+  line-height: 1.4;
+}
+
+
+/* --- Skills Section (from Home.css, ensure consistency) --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Experience Timeline (from Home.css, ensure consistency) --- */
+.experience-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background-color: var(--border-color);
+  transform: translateX(-2px);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--neon-purple);
+  border: 3px solid var(--background-color-dark);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 10px var(--neon-purple-faded);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+  margin-right: calc(50% + 20px);
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-right: auto;
+  margin-left: calc(50% + 20px);
+}
+
+.timeline-content {
+  width: calc(50% - 40px);
+  padding: 20px 25px;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px var(--neon-green-faded);
+  border-color: var(--neon-green);
+}
+
+.timeline-content h3 {
+  font-size: 1.4em;
+  color: var(--text-color-light);
+  margin-bottom: 5px;
+}
+
+.timeline-content .company {
+  font-size: 1em;
+  color: var(--neon-orange);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.timeline-content .years {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-color-muted);
+  margin-bottom: 15px;
+}
+
+.timeline-content .description {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+
+/* --- Pricing Section --- */
+.pricing-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  flex: 1 1 300px; /* Allows flexibility, but min width of 300px */
+  background-color: var(--card-background);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px var(--neon-pink-faded);
+  border-color: var(--neon-pink);
+}
+
+.pricing-card h3 {
+  font-size: 2em;
+  color: var(--neon-purple); /* Accent color for title */
+  margin-bottom: 20px;
+}
+
+.pricing-card .price {
+  font-size: 2.8em;
+  font-weight: 700;
+  color: var(--neon-green);
+  margin-bottom: 30px;
+}
+
+.pricing-card .features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.pricing-card .features-list li {
+  font-size: 1.05em;
+  color: var(--text-color);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-card .features-list li svg {
+  color: var(--neon-green);
+  font-size: 0.9em;
+}
+
+.pricing-card .pricing-note {
+  font-size: 0.9em;
+  color: var(--text-color-muted);
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Specific styles for Accountant.css (can be empty if no overrides) */
+/* This file exists to hold any unique styling for *this specific* role page */
+
+/* --- Responsive Adjustments for Role Pages --- */
+@media (min-width: 768px) {
+  .role-hero-section {
+    text-align: left;
+  }
+  .role-hero-content {
+    flex-direction: row;
+    text-align: left;
+  }
+  .role-hero-text {
+    align-items: flex-start;
+  }
+  .role-hero-buttons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .role-page {
+    padding-top: var(--navbar-height-mobile);
+  }
+  .common-section {
+    padding: 60px var(--padding-x-mobile);
+  }
+  .section-title {
+    font-size: 2.2em;
+  }
+  .section-subtitle {
+    font-size: 1em;
+    margin-bottom: 30px;
+  }
+
+  /* Role Hero Section */
+  .role-hero-section {
+    padding: 80px var(--padding-x-mobile);
+  }
+  .role-hero-title {
+    font-size: 2.5em;
+  }
+  .role-hero-bio {
+    font-size: 1em;
+  }
+  .role-hero-image .role-img {
+    width: 250px;
+    height: 250px;
+  }
+  .role-hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    flex-direction: column; /* Stack stats vertically */
+  }
+  .stat-item {
+    flex: none; /* Disable flex shrinking */
+    width: 100%;
+  }
+
+  /* Timeline */
+  .experience-timeline::before {
+    left: 20px; /* Move line to left for mobile */
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    left: 20px; /* Align dot with line */
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    flex-direction: row !important; /* Force all items to left side */
+  }
+  .timeline-item .timeline-content {
+    width: calc(100% - 60px); /* Adjust width */
+    margin-left: 60px !important; /* Space for line and dot */
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .common-section {
+    padding: 40px var(--padding-x-mobile);
+  }
+  .section-title {
+    font-size: 1.8em;
+  }
+  .section-subtitle {
+    font-size: 0.9em;
+  }
+
+  /* Role Hero Section */
+  .role-hero-section {
+    padding: 60px var(--padding-x-mobile);
+  }
+  .role-hero-title {
+    font-size: 2em;
+  }
+  .role-hero-bio {
+    font-size: 0.9em;
+  }
+  .role-hero-image .role-img {
+    width: 200px;
+    height: 200px;
+    border-width: 3px;
+  }
+
+  /* Pricing Card */
+  .pricing-card {
+    padding: 30px 20px;
+  }
+  .pricing-card h3 {
+    font-size: 1.8em;
+  }
+  .pricing-card .price {
+    font-size: 2.2em;
+  }
+  .pricing-card .features-list li {
+    font-size: 0.95em;
+  }
+}

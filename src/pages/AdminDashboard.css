@@ -1,0 +1,134 @@
+.admin-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-header-actions,
+.inline-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.admin-tab {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.admin-tab.active {
+  border-color: var(--neon-purple);
+  color: var(--neon-purple);
+}
+
+.admin-section {
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.admin-form-grid textarea {
+  grid-column: 1 / -1;
+  min-height: 120px;
+}
+
+.admin-form-grid input,
+.admin-form-grid textarea,
+.admin-form-grid select {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background: var(--dark-grey-2);
+  color: var(--text-color-light);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.admin-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--dark-grey-2);
+}
+
+.pill {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--background-color-light);
+}
+
+.admin-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: var(--neon-purple);
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-btn.secondary {
+  background: var(--dark-grey-3);
+}
+
+.admin-btn.danger {
+  background: #9d2f3f;
+}
+
+.admin-note {
+  margin: 8px 0 16px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.admin-note.success {
+  background: rgba(80, 216, 144, 0.15);
+}
+
+.admin-note.error {
+  background: rgba(255, 107, 107, 0.15);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

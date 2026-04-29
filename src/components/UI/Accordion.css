@@ -1,0 +1,97 @@
+/*
+ * src/components/UI/Accordion.css
+ *
+ * Styles for the Accordion component.
+ * Defines the appearance and smooth animation for collapsible content sections.
+ */
+
+.accordion-item {
+  margin-bottom: 15px; /* Space between accordion items */
+  border: 1px solid var(--border-color); /* Border around each item */
+  border-radius: 8px;
+  overflow: hidden; /* Important for content animation */
+  background-color: var(--card-background); /* Background color */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-item:hover {
+  border-color: var(--neon-green); /* Highlight border on hover */
+  box-shadow: 0 4px 15px var(--neon-green-faded); /* Subtle glow on hover */
+}
+
+.accordion-header {
+  display: flex; /* Arrange title and icon */
+  justify-content: space-between; /* Push title to left, icon to right */
+  align-items: center;
+  width: 100%;
+  padding: 18px 25px;
+  background-color: var(--background-color-light); /* Slightly lighter background for header */
+  border: none;
+  cursor: pointer;
+  color: var(--text-color-light);
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: var(--background-color-hover); /* Darker background on hover */
+}
+
+.accordion-header.open {
+  background-color: var(--neon-purple-faded); /* Accent color when open */
+  color: var(--text-color-light); /* Ensure text stays light */
+}
+
+.accordion-title {
+  margin: 0; /* Remove default margin from h3 */
+  font-size: 1.1em; /* Override default h3 font size for accordion */
+  color: inherit; /* Inherit color from parent (.accordion-header) */
+}
+
+.accordion-icon {
+  font-size: 1em;
+  transition: transform 0.3s ease; /* Smooth rotation for icon */
+  color: var(--neon-pink); /* Icon color */
+}
+
+.accordion-icon.rotate {
+  transform: rotate(180deg); /* Rotate 180deg when open */
+  color: var(--neon-green); /* Change icon color when open */
+}
+
+.accordion-content {
+  max-height: 0; /* Initially hidden */
+  overflow: hidden; /* Hide overflow content */
+  transition: max-height 0.5s ease-out; /* Smooth transition for height */
+  background-color: var(--card-background); /* Background of content area */
+}
+
+.accordion-body {
+  padding: 15px 25px 20px; /* Padding inside the content area */
+  color: var(--text-color);
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+/* Ensure paragraph margins are reset within accordion body */
+.accordion-body p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+  .accordion-header {
+    padding: 15px 20px;
+    font-size: 1em;
+  }
+  .accordion-title {
+    font-size: 1em;
+  }
+  .accordion-body {
+    padding: 12px 20px 15px;
+    font-size: 0.9em;
+  }
+}

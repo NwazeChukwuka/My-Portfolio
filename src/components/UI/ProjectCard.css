@@ -1,0 +1,137 @@
+/*
+ * src/components/UI/ProjectCard.css
+ *
+ * Styles for the ProjectCard component.
+ * Defines the visual presentation and interactive effects for individual project showcase cards.
+ * Extends the base '.card' styles from index.css.
+ */
+
+.project-card {
+  display: flex;
+  flex-direction: column; /* Stack image and content vertically */
+  border-radius: 12px;
+  overflow: hidden; /* Ensures image corners are rounded */
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Inherits from .card */
+}
+
+/* More pronounced hover effect for project cards */
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+  border-color: var(--neon-orange); /* Highlight border on hover */
+}
+
+.project-image-wrapper {
+  width: 100%;
+  height: 220px; /* Fixed height for consistent image size */
+  overflow: hidden; /* Ensures image stays within bounds */
+  border-bottom: 1px solid var(--border-color); /* Separator between image and content */
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  display: block; /* Remove extra space below image */
+  transition: transform 0.4s ease; /* Smooth zoom effect on image */
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05); /* Slightly zoom in on hover */
+}
+
+.project-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows content to take up available space */
+}
+
+.project-category {
+  font-size: 0.85em;
+  color: var(--text-color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.project-title {
+  font-size: 1.4em;
+  color: var(--text-color-light);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.project-description {
+  font-size: 0.95em;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Pushes links to the bottom */
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+  gap: 15px; /* Space between links */
+  margin-top: auto; /* Push links to the bottom if content is shorter */
+}
+
+.project-link {
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--neon-pink); /* Accent color for links */
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--neon-green); /* Change color on hover */
+  transform: translateX(3px); /* Slight slide effect */
+}
+
+.project-link svg {
+  font-size: 1em; /* Size of the icon within the link */
+}
+
+/* Style for the "View Details" link if different */
+.project-link.details-link {
+    color: var(--neon-orange);
+}
+.project-link.details-link:hover {
+    color: var(--neon-green);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+  .project-card {
+    padding-bottom: 0; /* Adjust padding for better look on small screens if necessary */
+  }
+  .project-image-wrapper {
+    height: 180px; /* Smaller image height on mobile */
+  }
+  .project-content {
+    padding: 15px; /* Reduced padding */
+  }
+  .project-title {
+    font-size: 1.2em;
+  }
+  .project-description {
+    font-size: 0.9em;
+  }
+  .project-links {
+    flex-direction: column; /* Stack links vertically on very small screens */
+    gap: 10px;
+  }
+  .project-link {
+    font-size: 0.85em;
+  }
+}

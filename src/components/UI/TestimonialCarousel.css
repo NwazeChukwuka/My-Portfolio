@@ -1,0 +1,175 @@
+/*
+ * src/components/UI/TestimonialCarousel.css
+ *
+ * Styles for the TestimonialCarousel component.
+ * Customizes the appearance of the react-slick carousel for testimonials.
+ */
+
+.testimonial-carousel-container {
+  max-width: 800px; /* Max width for the carousel container */
+  margin: 0 auto; /* Center the carousel */
+  padding: 30px 0; /* Vertical padding */
+  position: relative; /* Needed for dot positioning */
+}
+
+/* Base styles for the individual testimonial card within the carousel */
+.testimonial-slide .testimonial-card {
+  padding: 40px; /* More generous padding for testimonials */
+  position: relative;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  min-height: 280px; /* Ensure minimum height for consistency */
+  display: flex !important; /* Override slick-slide inline style */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  /* Remove default card hover as carousel handles transitions */
+  transform: none;
+  border-color: var(--neon-purple); /* Consistent border color */
+}
+
+/* Quote Icons */
+.quote-icon {
+  font-size: 3em; /* Large quote icons */
+  color: var(--neon-green); /* Neon green accent for quotes */
+  position: absolute; /* Position relative to .testimonial-card */
+  opacity: 0.2; /* Faded appearance */
+  z-index: 0; /* Behind the text content */
+}
+
+.quote-left {
+  top: 15px;
+  left: 20px;
+}
+
+.quote-right {
+  bottom: 15px;
+  right: 20px;
+}
+
+.testimonial-quote {
+  font-size: 1.2em;
+  font-style: italic;
+  color: var(--text-color-light);
+  margin-bottom: 25px;
+  z-index: 1; /* Ensure text is above quote icons */
+  position: relative;
+  line-height: 1.7;
+  max-width: 90%; /* Constrain width of quote */
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  margin-top: auto; /* Push author info to the bottom */
+  gap: 15px;
+}
+
+.author-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--neon-pink); /* Neon accent border */
+  box-shadow: 0 0 10px var(--neon-pink-faded);
+}
+
+.author-info {
+  text-align: left;
+}
+
+.author-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--neon-orange); /* Neon orange for author name */
+  margin-bottom: 3px;
+}
+
+.author-title {
+  font-size: 0.85em;
+  color: var(--text-color-muted);
+}
+
+/* --- react-slick Custom Dots Styling --- */
+.slick-dots {
+  bottom: -40px; /* Position dots below the carousel */
+}
+
+.slick-dots li button:before {
+  font-size: 12px; /* Size of the dots */
+  color: var(--border-color); /* Color of inactive dots */
+  opacity: 0.75;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--neon-pink); /* Color of active dot */
+  opacity: 1;
+  font-size: 14px; /* Slightly larger active dot */
+}
+
+/* No testimonials message */
+.no-testimonials {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-color-muted);
+  font-size: 1.1em;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .testimonial-slide .testimonial-card {
+    padding: 30px;
+    min-height: 250px;
+  }
+  .quote-icon {
+    font-size: 2.5em;
+  }
+  .testimonial-quote {
+    font-size: 1.1em;
+  }
+  .author-image {
+    width: 50px;
+    height: 50px;
+  }
+  .author-name {
+    font-size: 1em;
+  }
+  .author-title {
+    font-size: 0.8em;
+  }
+  .slick-dots {
+    bottom: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-slide .testimonial-card {
+    padding: 20px;
+    min-height: 220px;
+  }
+  .quote-icon {
+    font-size: 2em;
+  }
+  .quote-left {
+    top: 10px; left: 15px;
+  }
+  .quote-right {
+    bottom: 10px; right: 15px;
+  }
+  .testimonial-quote {
+    font-size: 0.95em;
+    max-width: 100%;
+  }
+  .testimonial-author {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .author-image {
+    margin-bottom: 5px;
+  }
+}

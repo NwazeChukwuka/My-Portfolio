@@ -1,0 +1,41 @@
+/*
+ * src/pages/WebDeveloper.css
+ *
+ * Use this file for any styles that are specifically unique to the Web Developer page,
+ * overriding or adding to the general `RolePage.css` styles.
+ */
+
+/* Example: Adjust hero image border for Web Developer page only */
+.web-developer-page .role-hero-image .role-img {
+  border-color: var(--neon-green); /* A specific accent for web dev */
+  box-shadow: 0 0 30px var(--neon-green-faded);
+}
+
+.web-developer-page .role-hero-image .role-img:hover {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 40px var(--neon-purple-faded);
+}
+
+/* Adjust colors for specific elements if needed for this role */
+.web-developer-page .pricing-card h3 {
+  color: var(--neon-green); /* Use a specific accent color for pricing titles */
+}
+
+.web-developer-page .stat-item .animated-number-container {
+  color: var(--neon-purple); /* Different color for stats if desired */
+}
+
+.web-developer-page .stat-item .stat-unit {
+  color: var(--neon-purple);
+}
+
+/* Ensure the timeline dot color is consistent or specifically set */
+.web-developer-page .timeline-dot {
+  background-color: var(--neon-green); /* Specific dot color for web dev timeline */
+  border-color: var(--background-color-dark); /* Match background */
+}
+
+.web-developer-page .timeline-content:hover {
+  border-color: var(--neon-purple); /* Specific hover border for timeline content */
+  box-shadow: 0 8px 15px var(--neon-purple-faded);
+}

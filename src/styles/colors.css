@@ -1,0 +1,260 @@
+/*
+ * src/styles/colors.css
+ * Complete CSS Variables for Dark/Light Theme System
+ */
+
+:root {
+  /* === LAYOUT DIMENSIONS === */
+  --sidebar-width: 280px;
+  --sidebar-width-collapsed: 60px;
+  --header-height: 70px;
+  --header-height-mobile: 60px;
+  --navbar-height: var(--header-height);
+  --navbar-height-mobile: var(--header-height-mobile);
+  --max-content-width: 1200px;
+  --max-width: var(--max-content-width);
+  --container-padding: 2rem;
+  --container-padding-mobile: 1rem;
+  --padding-x: var(--container-padding);
+  --padding-x-mobile: var(--container-padding-mobile);
+  --border-radius: 12px;
+  --border-radius-sm: 6px;
+  --border-radius-lg: 16px;
+
+  /* === SPACING === */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* === TYPOGRAPHY === */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* === Z-INDEX SCALE === */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --z-toast: 800;
+}
+
+/* === DARK THEME (DEFAULT) === */
+:root,
+html[data-theme='dark'] {
+  /* Base Colors */
+  --color-primary: #6366f1; /* Indigo */
+  --color-secondary: #8b5cf6; /* Violet */
+  --color-success: #10b981; /* Emerald */
+  --color-warning: #f59e0b; /* Amber */
+  --color-error: #ef4444; /* Red */
+  --color-info: #06b6d4; /* Cyan */
+
+  /* Neon Accents */
+  --neon-pink: #ff1b8d;
+  --neon-purple: #8b5cf6;
+  --neon-green: #00ff88;
+  --neon-orange: #ff6b35;
+  --neon-blue: #00d4ff;
+  
+  /* Neon Faded Variants */
+  --neon-pink-faded: rgba(255, 27, 141, 0.2);
+  --neon-purple-faded: rgba(139, 92, 246, 0.2);
+  --neon-green-faded: rgba(0, 255, 136, 0.2);
+  --neon-orange-faded: rgba(255, 107, 53, 0.2);
+  --neon-blue-faded: rgba(0, 212, 255, 0.2);
+
+  /* Background Colors */
+  --background-primary: #0f0f23;
+  --background-secondary: #1a1a2e;
+  --background-tertiary: #16213e;
+  --background-glass: rgba(15, 15, 35, 0.8);
+  --background-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Legacy support */
+  --background-color: var(--background-primary);
+  --background-color-dark: var(--background-secondary);
+  --background-color-light: var(--background-tertiary);
+  --card-background: var(--background-secondary);
+  --sidebar-background: var(--background-secondary);
+  --header-background: var(--background-glass);
+  --navbar-background: var(--background-glass);
+  --footer-background: var(--background-tertiary);
+  --dark-grey-3: rgba(255, 255, 255, 0.08);
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #94a3b8;
+  --text-muted: #64748b;
+  --text-disabled: #475569;
+
+  /* Legacy support */
+  --text-color: var(--text-primary);
+  --text-color-light: var(--text-secondary);
+  --text-color-muted: var(--text-tertiary);
+
+  /* Border Colors */
+  --border-primary: #334155;
+  --border-secondary: #475569;
+  --border-tertiary: #64748b;
+  --border-focus: var(--neon-pink);
+
+  /* Legacy support */
+  --border-color: var(--border-primary);
+
+  /* Input Colors */
+  --input-background: var(--background-tertiary);
+  --input-border: var(--border-primary);
+  --input-border-focus: var(--neon-pink);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-muted);
+
+  /* Button Colors */
+  --button-primary-bg: var(--neon-pink);
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #e1147a;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: var(--text-secondary);
+  --button-secondary-border: var(--border-primary);
+  --button-secondary-hover: var(--background-tertiary);
+
+  /* Status Colors */
+  --status-online: var(--color-success);
+  --status-away: var(--color-warning);
+  --status-busy: var(--color-error);
+  --status-offline: var(--text-muted);
+}
+
+/* === LIGHT THEME === */
+html[data-theme='light'] {
+  /* Base Colors */
+  --color-primary: #6366f1;
+  --color-secondary: #8b5cf6;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0891b2;
+
+  /* Neon Accents (adapted for light theme) */
+  --neon-pink: #db2777;
+  --neon-purple: #7c3aed;
+  --neon-green: #059669;
+  --neon-orange: #ea580c;
+  --neon-blue: #0284c7;
+  
+  /* Neon Faded Variants */
+  --neon-pink-faded: rgba(219, 39, 119, 0.1);
+  --neon-purple-faded: rgba(124, 58, 237, 0.1);
+  --neon-green-faded: rgba(5, 150, 105, 0.1);
+  --neon-orange-faded: rgba(234, 88, 12, 0.1);
+  --neon-blue-faded: rgba(2, 132, 199, 0.1);
+
+  /* Background Colors */
+  --background-primary: #ffffff;
+  --background-secondary: #f8fafc;
+  --background-tertiary: #f1f5f9;
+  --background-glass: rgba(248, 250, 252, 0.9);
+  --background-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Legacy support */
+  --background-color: var(--background-primary);
+  --background-color-dark: var(--background-secondary);
+  --background-color-light: var(--background-tertiary);
+  --card-background: var(--background-primary);
+  --sidebar-background: var(--background-secondary);
+  --header-background: var(--background-glass);
+  --navbar-background: var(--background-glass);
+  --footer-background: var(--background-tertiary);
+  --dark-grey-3: rgba(15, 23, 42, 0.08);
+
+  /* Text Colors */
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  --text-disabled: #cbd5e1;
+
+  /* Legacy support */
+  --text-color: var(--text-primary);
+  --text-color-light: var(--text-secondary);
+  --text-color-muted: var(--text-tertiary);
+
+  /* Border Colors */
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  --border-tertiary: #94a3b8;
+  --border-focus: var(--neon-pink);
+
+  /* Legacy support */
+  --border-color: var(--border-primary);
+
+  /* Input Colors */
+  --input-background: var(--background-primary);
+  --input-border: var(--border-primary);
+  --input-border-focus: var(--neon-pink);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-muted);
+
+  /* Button Colors */
+  --button-primary-bg: var(--neon-pink);
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #be185d;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: var(--text-secondary);
+  --button-secondary-border: var(--border-primary);
+  --button-secondary-hover: var(--background-tertiary);
+
+  /* Status Colors */
+  --status-online: var(--color-success);
+  --status-away: var(--color-warning);
+  --status-busy: var(--color-error);
+  --status-offline: var(--text-muted);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0s;
+    --transition-normal: 0s;
+    --transition-slow: 0s;
+  }
+}
+
+/* === HIGH CONTRAST === */
+@media (prefers-contrast: high) {
+  :root {
+    --border-primary: currentColor;
+    --text-muted: var(--text-secondary);
+  }
+}

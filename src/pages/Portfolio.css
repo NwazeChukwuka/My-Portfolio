@@ -1,0 +1,218 @@
+/*
+ * src/pages/Portfolio.css
+ *
+ * Styles for the main Portfolio page, including its hero section,
+ * filter functionality, and project grid layout.
+ */
+
+.portfolio-page {
+  padding-top: var(--navbar-height); /* Offset for fixed navbar */
+  color: var(--text-color);
+  background-color: var(--background-color-dark);
+}
+
+/* --- Common Section Styles (re-iterated for clarity) --- */
+.common-section {
+  padding: 80px var(--padding-x);
+  background-color: var(--background-color-dark);
+}
+
+.common-section:nth-of-type(odd) { /* Apply alternating background to specific sections */
+  background-color: var(--background-color-light);
+}
+
+.page-title {
+  font-size: 3.2em;
+  color: var(--text-color-light);
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+  margin: 10px auto 0;
+  border-radius: 3px;
+}
+
+.page-subtitle {
+  font-size: 1.3em;
+  color: var(--text-color-muted);
+  text-align: center;
+  margin-bottom: 50px;
+  font-style: italic;
+}
+
+
+/* --- Portfolio Hero Section --- */
+.portfolio-hero-section {
+  position: relative;
+  padding: 100px var(--padding-x) 80px;
+  background: var(--background-color-dark);
+  min-height: 40vh; /* Shorter hero for internal pages */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.portfolio-hero-content {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Overwrite page title/subtitle for this hero */
+.portfolio-hero-section .page-title {
+  margin-bottom: 20px;
+  font-size: 3.8em;
+}
+
+.portfolio-hero-section .page-subtitle {
+  font-size: 1.5em;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
+/* --- Portfolio Filter Section --- */
+.portfolio-filter-section {
+  padding-top: 50px; /* Adjust padding if needed for filter section specifically */
+  padding-bottom: 30px;
+  background-color: var(--background-color-light);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.filter-button {
+  background-color: var(--card-background);
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color);
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 1.05em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent buttons from breaking words */
+}
+
+.filter-button:hover {
+  background-color: var(--neon-purple);
+  border-color: var(--neon-purple);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-button.active {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+  border-color: var(--neon-pink);
+  color: #fff;
+  box-shadow: 0 5px 20px var(--neon-purple-faded);
+  transform: translateY(-2px);
+}
+
+/* --- Portfolio Projects Grid --- */
+.portfolio-projects-grid {
+  padding-top: 50px; /* Adjust padding to space out from filter */
+}
+
+.projects-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-projects-message {
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--text-color-muted);
+  padding: 50px 0;
+}
+
+/* --- Responsive Adjustments for Portfolio Page --- */
+@media (max-width: 768px) {
+  .portfolio-page {
+    padding-top: var(--navbar-height-mobile);
+  }
+  .common-section {
+    padding: 60px var(--padding-x-mobile);
+  }
+  .page-title {
+    font-size: 2.8em;
+  }
+  .page-subtitle {
+    font-size: 1.2em;
+  }
+
+  /* Portfolio Hero */
+  .portfolio-hero-section {
+    padding: 80px var(--padding-x-mobile);
+    min-height: 35vh;
+  }
+  .portfolio-hero-section .page-title {
+    font-size: 3em;
+  }
+  .portfolio-hero-section .page-subtitle {
+    font-size: 1.3em;
+  }
+
+  .filter-buttons {
+    gap: 10px;
+  }
+  .filter-button {
+    padding: 8px 20px;
+    font-size: 1em;
+  }
+  .projects-grid-container {
+    grid-template-columns: 1fr; /* Stack projects vertically on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .common-section {
+    padding: 40px var(--padding-x-mobile);
+  }
+  .page-title {
+    font-size: 2.2em;
+  }
+  .page-subtitle {
+    font-size: 1em;
+  }
+
+  /* Portfolio Hero */
+  .portfolio-hero-section {
+    padding: 60px var(--padding-x-mobile);
+    min-height: 30vh;
+  }
+  .portfolio-hero-section .page-title {
+    font-size: 2.5em;
+  }
+  .portfolio-hero-section .page-subtitle {
+    font-size: 1.1em;
+  }
+
+  .filter-button {
+    padding: 7px 15px;
+    font-size: 0.9em;
+  }
+}

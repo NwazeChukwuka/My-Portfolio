@@ -1,0 +1,235 @@
+/*
+ * src/pages/Resources.css
+ *
+ * Styles for the Resources page.
+ */
+
+.resources-page {
+  padding-top: var(--navbar-height); /* Offset for fixed navbar */
+  color: var(--text-color);
+  background-color: var(--background-color-dark);
+}
+
+/* --- Re-using common styles for hero, title, subtitle from other pages --- */
+.resources-hero-section {
+  position: relative;
+  padding: 100px var(--padding-x) 80px;
+  background: var(--background-color-dark);
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.resources-hero-content {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.resources-hero-section .page-title {
+  margin-bottom: 20px;
+  font-size: 3.8em;
+}
+
+.resources-hero-section .page-subtitle {
+  font-size: 1.5em;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* --- Resources List Section --- */
+.resources-list-section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  background-color: var(--background-color-light);
+}
+
+.resources-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resource-card {
+  background-color: var(--card-background);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px var(--neon-purple-faded);
+  border-color: var(--neon-purple);
+}
+
+.resource-card .resource-icon {
+  font-size: 2.5em;
+  color: var(--neon-pink);
+  margin-bottom: 15px;
+}
+
+.resource-card h3 {
+  font-size: 1.6em;
+  color: var(--neon-green);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.resource-card .resource-category {
+  font-size: 0.9em;
+  color: var(--text-color-muted);
+  background-color: var(--dark-grey-2);
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  border: 1px solid var(--neon-purple-faded);
+}
+
+.resource-card .resource-description {
+  font-size: 1em;
+  color: var(--text-color);
+  line-height: 1.6;
+  flex-grow: 1; /* Pushes link to the bottom */
+  margin-bottom: 20px;
+}
+
+.resource-card .resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--neon-orange);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.resource-card .resource-link:hover {
+  color: var(--neon-green);
+  transform: translateX(5px);
+}
+
+.resource-card .resource-link svg {
+  margin-left: 5px;
+}
+
+.no-resources-message {
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--text-color-muted);
+  padding: 50px 0;
+}
+
+/* --- Resources CTA Section --- */
+.resources-cta-section {
+  padding: 80px var(--padding-x);
+  background: linear-gradient(45deg, var(--neon-green-faded), var(--neon-purple-faded));
+  text-align: center;
+}
+
+.resources-cta-section .section-title {
+  color: #fff;
+}
+
+.resources-cta-section .section-title::after {
+  background: #fff;
+}
+
+.resources-cta-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggestion-button {
+  display: inline-block;
+  background-color: var(--background-color-dark);
+  color: var(--neon-pink);
+  border: 2px solid var(--neon-pink);
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.suggestion-button:hover {
+  background-color: var(--neon-pink);
+  color: var(--background-color-dark);
+  box-shadow: 0 8px 25px var(--neon-pink-faded);
+  transform: translateY(-3px);
+}
+
+/* --- Responsive Adjustments for Resources Page --- */
+@media (max-width: 768px) {
+  .resources-page {
+    padding-top: var(--navbar-height-mobile);
+  }
+  .resources-hero-section .page-title {
+    font-size: 3em;
+  }
+  .resources-hero-section .page-subtitle {
+    font-size: 1.3em;
+  }
+  .resources-list-section {
+    padding: 60px var(--padding-x-mobile);
+  }
+  .resources-grid-container {
+    grid-template-columns: 1fr;
+  }
+  .resource-card {
+    padding: 25px;
+  }
+  .resource-card .resource-icon {
+    font-size: 2.2em;
+  }
+  .resource-card h3 {
+    font-size: 1.4em;
+  }
+  .resource-card .resource-description {
+    font-size: 0.95em;
+  }
+  .suggestion-button {
+    padding: 12px 25px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-list-section {
+    padding: 40px var(--padding-x-mobile);
+  }
+  .resources-hero-section .page-title {
+    font-size: 2.5em;
+  }
+  .resources-hero-section .page-subtitle {
+    font-size: 1.1em;
+  }
+  .resource-card {
+    padding: 20px;
+  }
+  .resource-card .resource-icon {
+    font-size: 2em;
+  }
+  .resource-card h3 {
+    font-size: 1.2em;
+  }
+}

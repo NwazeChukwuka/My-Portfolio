@@ -1,0 +1,88 @@
+/*
+ * src/components/UI/ServiceCard.css
+ *
+ * Styles for the ServiceCard component.
+ * Defines the layout, appearance, and interactive effects for individual service display cards.
+ * Extends the base '.card' styles from index.css.
+ */
+
+.service-card {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center;
+  padding: 30px;
+  min-height: 250px; /* Ensure consistent height for cards in a grid */
+  border-radius: 12px;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: default; /* Not directly clickable, so no pointer cursor */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Inherits from .card */
+}
+
+/* Override base .card:hover to have a distinct hover for service cards if desired */
+.service-card:hover {
+  transform: translateY(-8px); /* More pronounced lift effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  border-color: var(--neon-green); /* Highlight border on hover */
+}
+
+
+.service-icon-wrapper {
+  background-color: var(--background-color-light); /* Slightly lighter background for the icon circle */
+  border-radius: 50%; /* Make it a circle */
+  width: 70px; /* Fixed size for the circle */
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 2px solid var(--neon-purple); /* Neon accent border for icon circle */
+  box-shadow: 0 0 15px var(--neon-purple-faded); /* Subtle glow effect */
+}
+
+.service-icon {
+  font-size: 2.5em; /* Size of the icon itself */
+  color: var(--neon-green); /* Neon green color for the icon */
+  transition: color 0.3s ease; /* Smooth transition for icon color */
+}
+
+.service-card:hover .service-icon {
+  color: var(--neon-pink); /* Change icon color on card hover */
+}
+
+.service-title {
+  font-size: 1.5em;
+  color: var(--text-color-light);
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.service-description {
+  font-size: 1em;
+  color: var(--text-color);
+  flex-grow: 1; /* Allows description to take up available space */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+  .service-card {
+    padding: 20px;
+    min-height: 220px;
+  }
+  .service-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+  .service-icon {
+    font-size: 2em;
+  }
+  .service-title {
+    font-size: 1.3em;
+  }
+  .service-description {
+    font-size: 0.95em;
+  }
+}

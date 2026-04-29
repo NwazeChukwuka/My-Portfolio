@@ -1,0 +1,117 @@
+/*
+ * src/components/UI/CircularProgressBar.css
+ *
+ * Styles for the CircularProgressBar component.
+ * Creates a visually appealing circular progress indicator for skills.
+ */
+
+.circular-progress-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px; /* Overall size of the component */
+  height: 140px;
+  position: relative;
+  margin: 10px; /* Space around each bar in a grid */
+  border-radius: 50%; /* Makes the entire container circular */
+  background-color: var(--card-background); /* Background of the circular container */
+  border: 1px solid var(--border-color); /* Border for the container */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.circular-progress-bar:hover {
+  transform: translateY(-5px) scale(1.05); /* Lift and slight enlarge on hover */
+  box-shadow: 0 8px 15px var(--neon-green-faded); /* Stronger glow */
+  border-color: var(--neon-green);
+}
+
+.circular-progress-bar.click-animate {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.circular-progress-bar.click-animate::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--neon-green) 40%, transparent);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.circular-progress-bar.click-animate[data-pressed='true']::after {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(20);
+  opacity: 0.35;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.circular-progress-bar.click-animate[data-pressed='true'] {
+  box-shadow: 0 0 0 2px var(--neon-green-faded), 0 10px 24px var(--neon-green-faded);
+}
+
+.progress-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg); /* Rotate SVG to start progress from the top */
+}
+
+.progress-circle-bg {
+  fill: none;
+  stroke: var(--background-color-light); /* Background color of the circle bar */
+  stroke-width: 8px; /* Thickness of the bar */
+}
+
+.progress-circle-fg {
+  fill: none;
+  stroke: var(--neon-pink); /* Foreground color of the progress bar */
+  stroke-width: 8px;
+  stroke-linecap: round; /* Rounded ends for the progress line */
+  /* stroke-dasharray is circumference (2*PI*R = 2*3.14159*45 = 282.74) */
+  stroke-dasharray: 283; /* Set to the circumference */
+  /* stroke-dashoffset initially hides the bar, 0 means full bar */
+  stroke-dashoffset: 283; /* Full offset (hidden) by default, animated to percentage */
+}
+
+.progress-text-wrapper {
+  position: relative; /* Position relative to .circular-progress-bar */
+  text-align: center;
+  z-index: 1; /* Ensure text is above SVG circles */
+}
+
+.progress-percentage {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--neon-green); /* Neon green for percentage */
+  display: block; /* Place percentage on its own line */
+}
+
+.skill-name {
+  font-size: 0.8em;
+  color: var(--text-color-light);
+  margin-top: 5px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 480px) {
+  .circular-progress-bar {
+    width: 120px;
+    height: 120px;
+    margin: 8px;
+  }
+  .progress-percentage {
+    font-size: 1.5em;
+  }
+  .skill-name {
+    font-size: 0.75em;
+  }
+}
