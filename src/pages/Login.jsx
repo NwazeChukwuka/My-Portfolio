@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import './Login.css';
@@ -10,6 +10,28 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!supabase) return undefined;
+    let mounted = true;
+
+    const boot = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (mounted && data.session) {
+        navigate('/admin');
+      }
+    };
+    boot();
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) navigate('/admin');
+    });
+
+    return () => {
+      mounted = false;
+      listener.subscription.unsubscribe();
+    };
+  }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,11 +70,37 @@ const Login = () => {
         throw new Error('Supabase is not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file.');
       }
 
-      const { error: otpError } = await supabase.auth.signInWithOtp({ email });
+      const { error: otpError } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/admin`,
+        },
+      });
       if (otpError) throw otpError;
-      setMessage('Magic link sent. Check your email inbox.');
+      setMessage('Magic link sent. Open it from your email to sign in without a password.');
     } catch (err) {
       setError(err.message || 'Unable to send magic link.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSendReset = async () => {
+    setLoading(true);
+    setError('');
+    setMessage('');
+
+    try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file.');
+      }
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/admin/reset-password`,
+      });
+      if (resetError) throw resetError;
+      setMessage('Password reset email sent. Check your inbox.');
+    } catch (err) {
+      setError(err.message || 'Unable to send password reset link.');
     } finally {
       setLoading(false);
     }
@@ -98,10 +146,21 @@ const Login = () => {
         >
           Send Magic Link
         </button>
+        <button
+          type="button"
+          className="magic-link-btn"
+          onClick={handleSendReset}
+          disabled={loading || !email}
+        >
+          Forgot Password / Reset Password
+        </button>
 
         {message && <p className="login-message">{message}</p>}
         {error && <p className="login-error">{error}</p>}
 
+        <p className="login-back-link">
+          <Link to="/admin/setup">Create Admin Account</Link>
+        </p>
         <p className="login-back-link">
           <Link to="/">Back to site</Link>
         </p>

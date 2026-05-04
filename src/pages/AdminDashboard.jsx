@@ -232,9 +232,23 @@ const AdminDashboard = () => {
           .from('profiles')
           .select('role')
           .eq('id', authData.user.id)
-          .single();
+          .maybeSingle();
 
-        if (profileError || profile?.role !== 'admin') {
+        if (profileError) {
+          throw profileError;
+        }
+
+        if (!profile) {
+          const { error: createProfileError } = await supabase.from('profiles').insert([{
+            id: authData.user.id,
+            email: authData.user.email,
+            full_name: authData.user.user_metadata?.full_name || '',
+          }]);
+          if (createProfileError) throw createProfileError;
+        }
+
+        const role = profile?.role || 'admin';
+        if (role !== 'admin') {
           throw new Error('Your account is not an admin yet. Set your profile role to admin.');
         }
 

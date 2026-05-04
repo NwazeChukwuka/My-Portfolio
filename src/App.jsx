@@ -27,6 +27,8 @@ import About from './pages/About';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Login from './pages/Login';
+import AdminSetup from './pages/AdminSetup';
+import ResetPassword from './pages/ResetPassword';
 import AdminDashboard from './pages/AdminDashboard';
 import NotFoundPage from './pages/NotFoundPage';
 import CaseStudy from './pages/CaseStudy';
@@ -258,6 +260,8 @@ function App() {
                 <Route path="/privacy" element={<ErrorBoundary><Privacy /></ErrorBoundary>} />
                 <Route path="/terms" element={<ErrorBoundary><Terms /></ErrorBoundary>} />
                 <Route path="/admin/login" element={<ErrorBoundary><Login /></ErrorBoundary>} />
+                <Route path="/admin/setup" element={<ErrorBoundary><AdminSetup /></ErrorBoundary>} />
+                <Route path="/admin/reset-password" element={<ErrorBoundary><ResetPassword /></ErrorBoundary>} />
                 <Route path="/admin" element={<ErrorBoundary><AdminDashboard /></ErrorBoundary>} />
                 <Route path="/case-studies/:slug" element={<ErrorBoundary><CaseStudy /></ErrorBoundary>} />
                 <Route path="/services/:slug" element={<ErrorBoundary><ServiceDetail /></ErrorBoundary>} />

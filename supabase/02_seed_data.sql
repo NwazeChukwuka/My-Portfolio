@@ -5,25 +5,29 @@
 -- Optional: promote one existing auth user to admin
 -- Replace with your real login email.
 update public.profiles
-set role = 'admin', full_name = coalesce(full_name, 'Mazi Chukwuka')
-where email = 'mazichukwuka@gmail.com';
+set role = 'admin', full_name = coalesce(full_name, 'Nwaze Chukwuka')
+where email = 'nwazechukwuka@gmail.com';
 
 -- Site settings
 insert into public.site_settings (key, value)
 values
   ('general', jsonb_build_object(
-    'full_name', 'Mazi Chukwuka',
+    'full_name', 'Nwaze Chukwuka',
     'tagline', 'Full-Stack Developer & Data Analyst',
     'profile_picture', '/assets/Me 1.webp',
+    'secondary_profile_picture', '/assets/Me 2.webp',
+    'about_short_bio', 'Add your short bio in Admin.',
+    'about_long_bio', 'Add your longer bio in Admin.',
+    'about_page_bio', 'Add your About page bio in Admin.',
     'availability_badge', 'Open to collaborations and new projects'
   )),
   ('contact', jsonb_build_object(
-    'email', 'mazichukwuka@gmail.com',
-    'phone', '+2349046049655',
-    'whatsapp', 'https://wa.me/2349046049655',
+    'email', 'nwazechukwuka@gmail.com',
+    'phone', '+2348166907383',
+    'whatsapp', 'https://wa.me/2348166907383',
     'address', 'Port Harcourt, Rivers State, Nigeria',
-    'linkedin', 'https://www.linkedin.com/in/mazichukwuka',
-    'github', 'https://github.com/mazichukwuka'
+    'linkedin', 'https://www.linkedin.com/in/chukwuka-nwaze',
+    'github', 'https://github.com/NwazeChukwuka'
   )),
   ('cvs', jsonb_build_object(
     'full', '/assets/cvs/mazi-full-cv.pdf',
@@ -41,7 +45,7 @@ values
     'Consulting',
     'A comprehensive project leveraging accounting, data analysis, and web development.',
     'Digitalized a small business operation by combining financial process design, analytics dashboards, and custom web tools.',
-    '/assets/general/cross-disciplinary-project.jpg',
+    '/assets/Me 2.webp',
     '/portfolio',
     true,
     10,
@@ -53,7 +57,7 @@ values
     'Full-Stack Development',
     'Responsive e-commerce platform with modern UX.',
     'Built with modern frontend patterns and robust backend APIs for scalable transactions and admin operations.',
-    '/assets/webdev/e-commerce-site.jpg',
+    '/assets/Me 2.webp',
     '/portfolio',
     true,
     20,
@@ -65,7 +69,7 @@ values
     'Predictive Analytics',
     'ML model for churn risk scoring.',
     'Developed and operationalized a churn model to improve retention planning and campaign targeting.',
-    '/assets/dataanalyst/sales-analysis.jpg',
+    '/assets/Me 2.webp',
     '/portfolio',
     true,
     30,
@@ -93,9 +97,9 @@ values
     '<h2>Introduction</h2><p>Financial reports are foundational to business decisions...</p>',
     'Accounting',
     array['financial reporting','accounting','auditing'],
-    '/assets/blog/ifrs-16.jpg',
+    '/assets/Me 2.webp',
     '2025-07-20',
-    'Mazi Chukwuka',
+    'Nwaze Chukwuka',
     '6 min read',
     'published'
   ),
@@ -106,9 +110,9 @@ values
     '<h2>Why Excel Still Matters</h2><p>Excel remains one of the most practical tools...</p>',
     'Data Analysis',
     array['excel','data analysis','beginners'],
-    '/assets/blog/data-viz.jpg',
+    '/assets/Me 2.webp',
     '2025-07-15',
-    'Mazi Chukwuka',
+    'Nwaze Chukwuka',
     '7 min read',
     'published'
   ),
@@ -119,9 +123,9 @@ values
     '<h2>Project Background</h2><p>This article covers the stack and implementation journey...</p>',
     'Web Development',
     array['react','node.js','web development'],
-    '/assets/blog/react-hooks.jpg',
+    '/assets/Me 2.webp',
     '2025-07-10',
-    'Mazi Chukwuka',
+    'Nwaze Chukwuka',
     '8 min read',
     'published'
   )

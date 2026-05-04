@@ -21,7 +21,7 @@ create table if not exists public.profiles (
   email text unique,
   full_name text,
   avatar_url text,
-  role text not null default 'admin',
+  role text not null default 'member',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -148,6 +148,7 @@ alter table public.contact_messages enable row level security;
 
 -- Clean existing policies if rerun
 drop policy if exists "profiles_read_own" on public.profiles;
+drop policy if exists "profiles_insert_own" on public.profiles;
 drop policy if exists "profiles_update_own" on public.profiles;
 drop policy if exists "projects_public_read" on public.projects;
 drop policy if exists "projects_admin_write" on public.projects;
@@ -165,6 +166,12 @@ on public.profiles
 for select
 to authenticated
 using (auth.uid() = id);
+
+create policy "profiles_insert_own"
+on public.profiles
+for insert
+to authenticated
+with check (auth.uid() = id);
 
 create policy "profiles_update_own"
 on public.profiles
