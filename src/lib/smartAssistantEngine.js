@@ -1,14 +1,11 @@
 import personalData from '../data/personalData';
-import blogArticles from '../data/blogArticles';
 
 const MAX_CV_CHARS = 6000;
 const cvTextCache = new Map();
 
 const roleCvMap = {
-  accountant: ['accountant', 'audit', 'tax', 'finance', 'ifrs'],
   webDeveloper: ['web', 'website', 'frontend', 'backend', 'react', 'developer', 'api'],
   dataAnalyst: ['data', 'analytics', 'dashboard', 'power bi', 'tableau', 'sql', 'python'],
-  researchAcademic: ['research', 'academic', 'paper', 'publication', 'methodology'],
   full: ['general', 'all', 'overview', 'portfolio', 'multidisciplinary'],
 };
 
@@ -84,13 +81,9 @@ function buildKnowledgeBase({ settings }) {
   const general = content.general || personalData.general;
   const contact = content.contact || personalData.contact;
 
-  const blogSummary = blogArticles.slice(0, 20).map((blog) => ({
-    slug: blog.slug,
-    title: blog.title,
-    category: blog.category,
-    tags: blog.tags,
-    snippet: blog.snippet,
-  }));
+  const blogSummary = Array.isArray(content.blogPostsSummaryForAssistant)
+    ? content.blogPostsSummaryForAssistant
+    : [];
 
   return {
     profile: {
@@ -106,10 +99,8 @@ function buildKnowledgeBase({ settings }) {
     services: content.homeServices || personalData.homeServices,
     faqs: content.faqs || personalData.faqs || [],
     roleOverviews: {
-      accountant: content.accountant?.introduction || personalData.accountant?.introduction || [],
       webDeveloper: content.webDeveloper?.introduction || personalData.webDeveloper?.introduction || [],
       dataAnalyst: content.dataAnalyst?.introduction || personalData.dataAnalyst?.introduction || [],
-      researchAcademic: content.researchAcademic?.introduction || personalData.researchAcademic?.introduction || [],
     },
     blogs: blogSummary,
   };

@@ -18,7 +18,7 @@
 }
 
 .common-section:nth-child(even) {
-  background-color: var(--background-color-light); /* Alternate background for contrast */
+  background-color: var(--background-color-dark);
 }
 
 .section-title {
@@ -78,12 +78,12 @@
 /* --- Hero Section --- */
 .hero-section {
   position: relative;
-  padding: 100px var(--padding-x) 80px; /* Adjusted padding */
+  padding: 22px var(--padding-x) 56px;
   background: var(--background-color-dark);
-  min-height: calc(100vh - var(--navbar-height)); /* Full viewport height minus navbar */
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   overflow: hidden; /* Hide overflowing background elements */
   text-align: center; /* Default for mobile */
 }
@@ -194,6 +194,7 @@
   height: 420px;
   border-radius: 50%; /* Circular image */
   object-fit: cover; /* Cover the area */
+  object-position: top center; /* keep head in frame for tight headshots */
   border: 5px solid var(--neon-green); /* Accent border */
   box-shadow: 0 0 30px var(--neon-green-faded); /* Glow effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -393,6 +394,7 @@
   height: 350px;
   border-radius: 12px; /* Slightly rounded rectangle */
   object-fit: cover;
+  object-position: top center;
   border: 5px solid var(--neon-purple);
   box-shadow: 0 0 30px var(--neon-purple-faded);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -413,6 +415,16 @@
   margin: 0 auto;
 }
 
+.service-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.service-card-link .service-card {
+  cursor: pointer;
+}
+
 
 /* --- Portfolio Section --- */
 .portfolio-grid {
@@ -427,7 +439,7 @@
 /* --- Skills Section --- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
   gap: 30px;
   justify-items: center; /* Center items within their grid cells */
   max-width: 900px; /* Max width to keep skills organized */
@@ -689,7 +701,7 @@
 
   /* Hero Section */
   .hero-section {
-    padding: 80px var(--padding-x-mobile);
+    padding: 18px var(--padding-x-mobile) 44px;
   }
   .hero-title {
     font-size: 2.8em;
@@ -760,7 +772,7 @@
 
   /* Hero Section */
   .hero-section {
-    padding: 60px var(--padding-x-mobile);
+    padding: 14px var(--padding-x-mobile) 38px;
   }
   .hero-title {
     font-size: 2.2em;

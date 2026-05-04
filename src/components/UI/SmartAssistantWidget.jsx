@@ -24,7 +24,7 @@ const SmartAssistantWidget = () => {
   const quickPrompts = useMemo(() => ([
     'What services fit my business needs?',
     'Recommend the right CV for hiring',
-    'Show me relevant blog posts about accounting',
+    'Show me relevant blog posts about web development',
     'How can I contact Mazi directly?',
   ]), []);
 

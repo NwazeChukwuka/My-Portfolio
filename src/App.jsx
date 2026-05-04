@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useEffect, useState, useCallback } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -29,6 +29,8 @@ import Terms from './pages/Terms';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import NotFoundPage from './pages/NotFoundPage';
+import CaseStudy from './pages/CaseStudy';
+import ServiceDetail from './pages/ServiceDetail';
 import { PortfolioContentProvider } from './hooks/usePortfolioContent';
 
 /**
@@ -257,6 +259,11 @@ function App() {
                 <Route path="/terms" element={<ErrorBoundary><Terms /></ErrorBoundary>} />
                 <Route path="/admin/login" element={<ErrorBoundary><Login /></ErrorBoundary>} />
                 <Route path="/admin" element={<ErrorBoundary><AdminDashboard /></ErrorBoundary>} />
+                <Route path="/case-studies/:slug" element={<ErrorBoundary><CaseStudy /></ErrorBoundary>} />
+                <Route path="/services/:slug" element={<ErrorBoundary><ServiceDetail /></ErrorBoundary>} />
+                <Route path="/accountant" element={<Navigate to="/not-found" replace />} />
+                <Route path="/research-academic" element={<Navigate to="/not-found" replace />} />
+                <Route path="/not-found" element={<ErrorBoundary><NotFoundPage /></ErrorBoundary>} />
                 <Route path="*" element={<ErrorBoundary><NotFoundPage /></ErrorBoundary>} />
               </Routes>
             </div>

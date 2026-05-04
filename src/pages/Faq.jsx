@@ -17,7 +17,11 @@ import './Faq.css'; // Page-specific styles for FAQs
 const Faq = () => {
   const personalData = usePortfolioContent();
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
+    AOS.init({
+      duration: 1000,
+      once: true,
+      disableMutationObserver: true,
+    });
     window.scrollTo(0, 0); // Ensure scroll to top on page load
   }, []);
 
@@ -45,23 +49,20 @@ const Faq = () => {
           <div className="accordion-container">
             {faqs.map((faq, index) => (
               <div
-                className={`accordion-item card ${activeIndex === index ? 'active' : ''}`}
+                className={`accordion-item ${activeIndex === index ? 'active' : ''}`}
                 key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
               >
-                <button className="accordion-header" onClick={() => toggleAccordion(index)}>
+                <button type="button" className="accordion-header" onClick={() => toggleAccordion(index)}>
                   <h3>{faq.question}</h3>
                   <span className="accordion-icon">
                     {activeIndex === index ? <FaMinus /> : <FaPlus />}
                   </span>
                 </button>
-                <div
-                  className="accordion-content"
-                  style={{ maxHeight: activeIndex === index ? '200px' : '0' }} /* Adjust max-height as needed */
-                >
-                  <p>{faq.answer}</p>
-                </div>
+                {activeIndex === index && (
+                  <div className="accordion-content">
+                    <p>{faq.answer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

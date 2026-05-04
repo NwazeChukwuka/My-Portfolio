@@ -18,7 +18,7 @@
 }
 
 .common-section:nth-of-type(odd) { /* Apply alternating background to specific sections */
-  background-color: var(--background-color-light);
+  background-color: var(--background-color-dark);
 }
 
 .page-title {
@@ -54,12 +54,12 @@
 /* --- Portfolio Hero Section --- */
 .portfolio-hero-section {
   position: relative;
-  padding: 100px var(--padding-x) 80px;
+  padding: 18px var(--padding-x) 44px;
   background: var(--background-color-dark);
-  min-height: 40vh; /* Shorter hero for internal pages */
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   text-align: center;
   flex-direction: column;
 }
@@ -88,7 +88,7 @@
 .portfolio-filter-section {
   padding-top: 50px; /* Adjust padding if needed for filter section specifically */
   padding-bottom: 30px;
-  background-color: var(--background-color-light);
+  background-color: var(--background-color-dark);
 }
 
 .filter-buttons {
@@ -166,8 +166,8 @@
 
   /* Portfolio Hero */
   .portfolio-hero-section {
-    padding: 80px var(--padding-x-mobile);
-    min-height: 35vh;
+    padding: 14px var(--padding-x-mobile) 34px;
+    min-height: auto;
   }
   .portfolio-hero-section .page-title {
     font-size: 3em;
@@ -201,8 +201,8 @@
 
   /* Portfolio Hero */
   .portfolio-hero-section {
-    padding: 60px var(--padding-x-mobile);
-    min-height: 30vh;
+    padding: 10px var(--padding-x-mobile) 28px;
+    min-height: auto;
   }
   .portfolio-hero-section .page-title {
     font-size: 2.5em;

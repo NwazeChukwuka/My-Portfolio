@@ -53,10 +53,10 @@
 .footer-container {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--spacing-3xl) var(--container-padding) var(--spacing-2xl);
+  padding: var(--spacing-2xl) var(--container-padding) var(--spacing-xl);
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-xl);
   align-items: start;
 }
 
@@ -70,7 +70,7 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   position: relative;
   padding-bottom: var(--spacing-sm);
 }
@@ -88,11 +88,11 @@
 
 /* About section */
 .footer-about {
-  max-width: 400px;
+  max-width: none;
 }
 
 .footer-tagline {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   color: var(--neon-green);
   margin-bottom: var(--spacing-md) !important;
@@ -100,9 +100,9 @@
 
 .footer-description {
   font-size: var(--font-size-sm);
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--text-tertiary);
-  margin-bottom: var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-lg) !important;
 }
 
 .footer-contact-info {
@@ -184,20 +184,20 @@
 
 /* Social section */
 .footer-social {
-  max-width: 300px;
+  max-width: none;
 }
 
 .social-description {
   font-size: var(--font-size-sm);
   color: var(--text-tertiary);
-  margin-bottom: var(--spacing-lg) !important;
+  margin-bottom: var(--spacing-md) !important;
   line-height: 1.6;
 }
 
 .social-icons {
   display: flex;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
 }
 
@@ -310,7 +310,7 @@
 .footer-bottom-content {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--spacing-xl) var(--container-padding);
+  padding: var(--spacing-md) var(--container-padding);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -348,14 +348,9 @@
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 1024px) {
   .footer-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-xl);
-    padding: var(--spacing-2xl) var(--container-padding);
-  }
-  
-  .footer-about {
-    grid-column: 1 / -1;
-    max-width: none;
+    padding: var(--spacing-xl) var(--container-padding);
   }
   
   .back-to-top {
@@ -366,8 +361,8 @@
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
-    padding: var(--spacing-xl) var(--container-padding-mobile);
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--container-padding-mobile);
   }
   
   .footer-section h3 {
@@ -421,7 +416,7 @@
 
 @media (max-width: 480px) {
   .footer-container {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
   }
   
   .footer-section h3 {

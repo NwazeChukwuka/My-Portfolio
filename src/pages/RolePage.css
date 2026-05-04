@@ -19,7 +19,7 @@
 }
 
 .common-section:nth-of-type(odd) { /* Apply alternating background to specific sections */
-  background-color: var(--background-color-light);
+  background-color: var(--background-color-dark);
 }
 
 .section-title {
@@ -80,12 +80,12 @@
 /* --- Role Hero Section --- */
 .role-hero-section {
   position: relative;
-  padding: 100px var(--padding-x) 80px;
+  padding: 20px var(--padding-x) 54px;
   background: var(--background-color-dark);
-  min-height: calc(80vh - var(--navbar-height)); /* Slightly shorter than home hero */
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   overflow: hidden;
   text-align: center; /* Default for mobile */
 }
@@ -148,6 +148,7 @@
   height: 350px;
   border-radius: 12px; /* Square with rounded corners */
   object-fit: cover;
+  object-position: top center; /* keep face visible for portrait photos */
   border: 5px solid var(--neon-purple); /* Accent border */
   box-shadow: 0 0 30px var(--neon-purple-faded);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -239,7 +240,7 @@
 /* --- Skills Section (from Home.css, ensure consistency) --- */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
   gap: 30px;
   justify-items: center;
   max-width: 900px;
@@ -452,7 +453,7 @@
 
   /* Role Hero Section */
   .role-hero-section {
-    padding: 80px var(--padding-x-mobile);
+    padding: 16px var(--padding-x-mobile) 42px;
   }
   .role-hero-title {
     font-size: 2.5em;
@@ -463,6 +464,7 @@
   .role-hero-image .role-img {
     width: 250px;
     height: 250px;
+    object-position: top center;
   }
   .role-hero-buttons {
     flex-direction: column;
@@ -510,7 +512,7 @@
 
   /* Role Hero Section */
   .role-hero-section {
-    padding: 60px var(--padding-x-mobile);
+    padding: 12px var(--padding-x-mobile) 34px;
   }
   .role-hero-title {
     font-size: 2em;
@@ -522,6 +524,7 @@
     width: 200px;
     height: 200px;
     border-width: 3px;
+    object-position: top center;
   }
 
   /* Pricing Card */

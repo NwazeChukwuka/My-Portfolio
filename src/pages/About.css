@@ -5,7 +5,7 @@
 }
 
 .about-hero {
-  padding: 88px var(--padding-x) 40px;
+  padding: 14px var(--padding-x) 24px;
   max-width: 980px;
   margin: 0 auto;
   background: transparent;
@@ -174,7 +174,7 @@
 
 .about-skills-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
   gap: 18px;
   justify-items: center;
   max-width: 980px;

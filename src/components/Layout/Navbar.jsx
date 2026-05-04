@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaCaretDown } from 'react-icons/fa'; // Import icons for menu and dropdown
-import personalData from '../../data/personalData'; // Import personal data for dynamic names
+import usePortfolioContent from '../../hooks/usePortfolioContent';
 
 import './Navbar.css';
 
@@ -10,7 +10,8 @@ import './Navbar.css';
 const Navbar = ({ toggleSidebar }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const location = useLocation(); // To close dropdown/menu on route change
+  const location = useLocation();
+  const { general = {} } = usePortfolioContent();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -35,13 +36,11 @@ const Navbar = ({ toggleSidebar }) => {
     closeMenu();
   }, [location.pathname]);
 
-  const { general } = personalData; // Get general data for name
-
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          {general.fullName || 'Your Name'} {/* Dynamic name from personalData */}
+          {general.fullName || 'Your Name'}
         </Link>
 
         {/* This is the menu icon (hamburger/X) that toggles both the internal Navbar state
@@ -67,11 +66,6 @@ const Navbar = ({ toggleSidebar }) => {
             </span>
             <ul className={isDropdownOpen ? 'dropdown-menu active' : 'dropdown-menu'}>
               <li className="dropdown-item">
-                <NavLink to="/accountant" className="dropdown-links" onClick={closeMenu}>
-                  Accountant
-                </NavLink>
-              </li>
-              <li className="dropdown-item">
                 <NavLink to="/web-developer" className="dropdown-links" onClick={closeMenu}>
                   Web Developer
                 </NavLink>
@@ -79,11 +73,6 @@ const Navbar = ({ toggleSidebar }) => {
               <li className="dropdown-item">
                 <NavLink to="/data-analyst" className="dropdown-links" onClick={closeMenu}>
                   Data Analyst
-                </NavLink>
-              </li>
-              <li className="dropdown-item">
-                <NavLink to="/research-academic" className="dropdown-links" onClick={closeMenu}>
-                  Research & Academic
                 </NavLink>
               </li>
             </ul>

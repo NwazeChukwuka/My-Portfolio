@@ -113,6 +113,18 @@ export async function getBlogPosts() {
   return data;
 }
 
+export async function getBlogPostBySlug(slug) {
+  if (!supabase) throw new Error('Supabase is not configured.');
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
+}
+
 export async function upsertBlogPost(post) {
   if (!supabase) throw new Error('Supabase is not configured.');
   const payload = {
@@ -159,7 +171,7 @@ export async function createProject(project) {
     summary: project.summary || '',
     description: project.description || '',
     image_url: project.image_url || null,
-    details_url: project.details_url || '/portfolio',
+    details_url: project.details_url || `/case-studies/${project.slug}`,
     is_featured: Boolean(project.is_featured),
     sort_order: Number(project.sort_order || 0),
     status: project.status || 'published',

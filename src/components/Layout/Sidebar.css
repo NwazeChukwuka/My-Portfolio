@@ -139,6 +139,7 @@
   border-radius: 50%;
   border: 3px solid var(--neon-pink);
   object-fit: cover;
+  object-position: top center;
   transition: 
     border-color var(--transition-normal),
     transform var(--transition-normal);

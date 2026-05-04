@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaSun, FaMoon } from 'react-icons/fa';
-import personalData from '../../data/personalData';
+import usePortfolioContent from '../../hooks/usePortfolioContent';
 import './Header.css';
 
 /**
@@ -11,9 +11,8 @@ import './Header.css';
  * On desktop, this is hidden as sidebar handles all navigation
  */
 const Header = ({ isMobile, onMenuClick, currentTheme, onThemeToggle }) => {
-  const { general } = personalData;
+  const { general = {} } = usePortfolioContent();
 
-  // Don't render header on desktop
   if (!isMobile) {
     return null;
   }

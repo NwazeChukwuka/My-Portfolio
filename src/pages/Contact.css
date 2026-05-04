@@ -13,12 +13,12 @@
 /* --- Re-using common styles for hero, title, subtitle from other pages --- */
 .contact-hero-section {
   position: relative;
-  padding: 100px var(--padding-x) 80px;
+  padding: 18px var(--padding-x) 44px;
   background: var(--background-color-dark);
-  min-height: 40vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   text-align: center;
   flex-direction: column;
 }
@@ -45,7 +45,7 @@
 .contact-details-form-section {
   padding-top: 50px;
   padding-bottom: 80px;
-  background-color: var(--background-color-light);
+  background-color: var(--background-color-dark);
 }
 
 .contact-container {
@@ -225,6 +225,9 @@
   .contact-page {
     padding-top: var(--navbar-height-mobile);
   }
+  .contact-hero-section {
+    padding: 14px var(--padding-x-mobile) 34px;
+  }
   .contact-hero-section .page-title {
     font-size: 3em;
   }
@@ -272,6 +275,9 @@
 }
 
 @media (max-width: 480px) {
+  .contact-hero-section {
+    padding: 10px var(--padding-x-mobile) 28px;
+  }
   .contact-details-form-section {
     padding: 40px var(--padding-x-mobile);
   }

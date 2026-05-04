@@ -7,11 +7,8 @@ import {
   FaLinkedin, FaGithub, FaWhatsapp, FaTimes, FaSun, FaMoon,
   FaChevronLeft, FaChevronRight, FaFolder
 } from 'react-icons/fa';
-import personalData from '../../data/personalData';
-import useSiteSettings from '../../hooks/useSiteSettings';
+import usePortfolioContent from '../../hooks/usePortfolioContent';
 import './Sidebar.css';
-
-const profilePic = '/assets/profile-placeholder.png';
 
 /**
  * Sidebar Component
@@ -31,11 +28,10 @@ const Sidebar = ({
 }) => {
   const sidebarRef = useRef(null);
   const location = useLocation();
-  const { general: overrideGeneral, contact: overrideContact } = useSiteSettings();
-  const { general, contact } = {
-    general: overrideGeneral || personalData.general,
-    contact: overrideContact || personalData.contact,
-  };
+  const portfolio = usePortfolioContent();
+  const general = portfolio.general || {};
+  const contact = portfolio.contact || {};
+  const profilePic = general.secondaryProfilePicture || '/assets/Me 2.webp';
 
   // Navigation items configuration
   const navItems = [

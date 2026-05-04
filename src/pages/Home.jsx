@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// Import local data
-import blogArticles from '../data/blogArticles';
 import usePortfolioContent from '../hooks/usePortfolioContent';
 
 // Import UI Components
@@ -37,34 +35,39 @@ const Home = () => {
     });
   }, []);
 
-  const latestBlogArticles = useMemo(() =>
-    [...blogArticles]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 3),
-    []
-  );
+  const latestBlogArticles = useMemo(() => {
+    const list = mergedData.blogArticlesList || [];
+    return list.slice(0, 3);
+  }, [mergedData.blogArticlesList]);
 
-  const skillsAverage = useMemo(() =>
-    mergedData.homeSkills.reduce((acc, skill) => acc + skill.percentage, 0) / mergedData.homeSkills.length,
-    [mergedData.homeSkills]
-  );
-
-  // CORRECTED: 'certifications' has been removed from destructuring and from the code below
   const {
-    homeSkills,
-    homeExperience,
-    homeTestimonials,
-    homeServices,
-    homePortfolioPreviews,
-    contact,
-    general: {
-      fullName: name,
-      profilePicture,
-      tagline: blendedTitle,
-      aboutMe: [shortBio, longBio],
-      cvs,
-    }
+    homeSkills = [],
+    homeExperience = [],
+    homeTestimonials = [],
+    homeServices = [],
+    homePortfolioPreviews = [],
+    projectsFromDb = [],
+    contact = {},
+    general: gen = {},
   } = mergedData;
+
+  const name = gen.fullName || '';
+  const profilePicture = gen.profilePicture || '/assets/Me 1.webp';
+  const secondaryProfilePicture = gen.secondaryProfilePicture || '/assets/Me 2.webp';
+  const blendedTitle = gen.tagline || '';
+  const aboutArr = Array.isArray(gen.aboutMe) ? gen.aboutMe : ['', ''];
+  const shortBio = aboutArr[0] || '';
+  const longBio = aboutArr[1] || '';
+  const cvs = gen.cvs || {};
+
+  const featuredProjects = useMemo(() => {
+    const fromDb = projectsFromDb || [];
+    const fallback = homePortfolioPreviews || [];
+    const source = fromDb.length ? fromDb : fallback;
+    return source.slice(0, 3);
+  }, [projectsFromDb, homePortfolioPreviews]);
+
+  const serviceSlug = (title) => String(title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   const cvOptions = [
     { key: 'full', label: 'General CV' },
@@ -190,12 +193,14 @@ const Home = () => {
           
           <div className="about-image" data-aos="fade-left">
             <div className="about-image-container">
-              <img src={profilePicture} alt={`${name} - Professional Photo`} />
+              <img src={secondaryProfilePicture} alt={`${name} - Professional Photo`} />
               <div className="about-image-overlay">
+                {homeExperience.length > 0 && (
                 <div className="experience-badge">
                   <span className="badge-number">{homeExperience.length}+</span>
                   <span className="badge-text">Years Experience</span>
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -213,16 +218,15 @@ const Home = () => {
         
         <div className="services-grid">
           {homeServices.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              features={service.features}
-              aos="fade-up"
-              aosDelay={index * 100}
-              className="enhanced-service-card"
-            />
+            <Link key={service.title || index} to={`/services/${serviceSlug(service.title)}`} className="service-card-link">
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                aos="fade-up"
+                aosDelay={index * 100}
+              />
+            </Link>
           ))}
         </div>
         
@@ -237,7 +241,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Enhanced Portfolio Preview Section */}
+      {/* Featured projects — from Supabase when configured */}
+      {featuredProjects.length > 0 && (
       <section className="portfolio-section common-section" id="portfolio">
         <div className="section-header">
           <h2 className="section-title" data-aos="fade-up">Featured Projects</h2>
@@ -247,7 +252,7 @@ const Home = () => {
         </div>
         
         <div className="portfolio-grid">
-          {homePortfolioPreviews.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               image={project.image}
@@ -269,8 +274,10 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      )}
 
       {/* Enhanced Skills Section */}
+      {homeSkills.length > 0 && (
       <section className="skills-section common-section bg-dark" id="skills">
         <div className="section-header">
           <h2 className="section-title" data-aos="fade-up">My Key Skills</h2>
@@ -295,16 +302,6 @@ const Home = () => {
             ))}
           </div>
           
-          <div className="skills-summary" data-aos="fade-up" data-aos-delay="400">
-            <div className="summary-card">
-              <h3>Overall Expertise</h3>
-              <div className="average-skill">
-                <span className="average-number">{Math.round(skillsAverage)}%</span>
-                <span className="average-label">Average Proficiency</span>
-              </div>
-              <p>Continuously learning and adapting to new technologies and methodologies.</p>
-            </div>
-          </div>
         </div>
         
         <div className="section-action" data-aos="fade-up" data-aos-delay="300">
@@ -313,9 +310,10 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      )}
 
-      {/* Rest of sections remain the same with minor enhancements */}
       {/* Experience Section */}
+      {homeExperience.length > 0 && (
       <section className="experience-section common-section" id="experience">
         <div className="section-header">
           <h2 className="section-title" data-aos="fade-up">Professional Journey</h2>
@@ -347,8 +345,10 @@ const Home = () => {
           ))}
         </div>
       </section>
+      )}
 
       {/* Enhanced Testimonials Section */}
+      {homeTestimonials.length > 0 && (
       <section className="testimonials-section common-section bg-gradient" id="testimonials">
         <div className="section-header">
           <h2 className="section-title" data-aos="fade-up">What Clients Say</h2>
@@ -365,8 +365,10 @@ const Home = () => {
           showDots={true}
         />
       </section>
+      )}
 
-      {/* Enhanced Blog Teaser Section */}
+      {/* Blog teaser — from Supabase blog_posts */}
+      {latestBlogArticles.length > 0 && (
       <section className="blog-teaser-section common-section" id="blog-teasers">
         <div className="section-header">
           <h2 className="section-title" data-aos="fade-up">Latest Insights</h2>
@@ -387,10 +389,12 @@ const Home = () => {
               <div className="blog-teaser-content">
                 <div className="blog-meta">
                   <span className="blog-category">{article.category}</span>
-                  <time className="blog-date">{article.date}</time>
+                  <time className="blog-date">
+                    {article.date ? new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''}
+                  </time>
                 </div>
                 <h3 className="blog-teaser-title">{article.title}</h3>
-                <p className="blog-teaser-snippet">{article.snippet}</p>
+                <p className="blog-teaser-snippet">{article.snippet || article.preview}</p>
                 <Link to={`/blog/${article.slug}`} className="read-more-link">
                   Read Full Article <FaArrowRight />
                 </Link>
@@ -405,6 +409,7 @@ const Home = () => {
           </Link>
         </div>
       </section>
+      )}
 
       {/* Call-to-Action Section */}
       <section className="cta-section common-section bg-primary" id="cta">

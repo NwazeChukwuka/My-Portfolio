@@ -21,27 +21,20 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const aboutParagraph = general.aboutMe?.[0] || '';
-  const summaryParagraph = general.aboutMe?.[1] || '';
+  const aboutParagraph = general.aboutPageBio
+    || [general.aboutMe?.[0], general.aboutMe?.[1]].filter(Boolean).join(' ');
 
-  const trustedBrands = personalData.trustedBrands || ['LOGOIPSUM', 'FLASH', 'SNOWFLAKE', 'PROLINE'];
-  const educationItems = personalData.aboutEducation || [
-    { title: 'MSc Accounting', institution: 'Ignatius Ajuru University of Education', years: '' },
-    { title: 'BSc Accounting', institution: 'Ignatius Ajuru University of Education', years: '' },
-  ];
-  const qualificationItems = personalData.aboutQualifications || [
-    { title: 'Chartered Accountant (ICAN)', institution: 'Institute of Chartered Accountants of Nigeria', years: '' },
-    { title: 'National Institute of Management (Chartered)', institution: 'NIM', years: '' },
-    { title: 'Chartered Institute of Customer Relationship Management (CICRM)', institution: 'CICRM', years: '' },
-  ];
+  const trustedBrands = personalData.trustedBrands || [];
+  const educationItems = personalData.aboutEducation || [];
+  const qualificationItems = personalData.aboutQualifications || [];
   return (
     <div className="about-page">
       <section className="about-hero">
         <h1>About Me.</h1>
         <p>{aboutParagraph}</p>
-        <p>{summaryParagraph}</p>
       </section>
 
+      {trustedBrands.length > 0 && (
       <section className="brands-strip" aria-label="Trusted brands">
         <span className="brands-label" data-aos="fade-up">Worked with global brands</span>
         <div className="brand-pills">
@@ -53,8 +46,10 @@ const About = () => {
           ))}
         </div>
       </section>
+      )}
 
       <section className="about-career-section common-section">
+        {educationItems.length > 0 && (
         <div className="about-career-block">
           <h2 className="about-career-title" data-aos="fade-up">Education</h2>
           <div className="about-career-timeline">
@@ -70,7 +65,9 @@ const About = () => {
             ))}
           </div>
         </div>
+        )}
 
+        {qualificationItems.length > 0 && (
         <div className="about-career-block">
           <h2 className="about-career-title" data-aos="fade-up">Professional Qualifications</h2>
           <div className="about-career-timeline">
@@ -86,7 +83,9 @@ const About = () => {
             ))}
           </div>
         </div>
+        )}
 
+        {(personalData.homeExperience || []).length > 0 && (
         <div className="about-career-block">
           <h2 className="about-career-title" data-aos="fade-up">Experience</h2>
           <div className="about-career-timeline">
@@ -107,8 +106,10 @@ const About = () => {
             ))}
           </div>
         </div>
+        )}
       </section>
 
+      {(personalData.homeSkills || []).length > 0 && (
       <section className="skills-strip common-section">
         <h2 data-aos="fade-up">Coding Skills</h2>
         <div className="about-skills-grid">
@@ -124,6 +125,7 @@ const About = () => {
           ))}
         </div>
       </section>
+      )}
     </div>
   );
 };

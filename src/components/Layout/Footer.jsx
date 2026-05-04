@@ -5,8 +5,7 @@ import {
   FaLinkedin, FaTwitter, FaGithub, FaWhatsapp,
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowUp,
 } from 'react-icons/fa';
-import personalData from '../../data/personalData';
-import useSiteSettings from '../../hooks/useSiteSettings';
+import usePortfolioContent from '../../hooks/usePortfolioContent';
 import './Footer.css';
 
 /**
@@ -14,11 +13,9 @@ import './Footer.css';
  * Comprehensive footer with contact info, links, and social media
  */
 const Footer = () => {
-  const { general: overrideGeneral, contact: overrideContact } = useSiteSettings();
-  const { general, contact } = {
-    general: overrideGeneral || personalData.general,
-    contact: overrideContact || personalData.contact,
-  };
+  const data = usePortfolioContent();
+  const general = data.general || {};
+  const contact = data.contact || {};
   const currentYear = new Date().getFullYear();
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -47,7 +44,6 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Resources', path: '/resources' },
     { name: 'FAQ', path: '/faq' },
     { name: 'Contact', path: '/contact' }
   ];
@@ -107,7 +103,7 @@ const Footer = () => {
             {general.tagline || 'Multidisciplinary Professional'}
           </p>
           <p className="footer-description">
-            {general.bio || 'Delivering excellence in accounting, web development, data analysis, and academic research.'}
+            {general.aboutPageBio || general.bio || 'Web development, data analysis, and product delivery.'}
           </p>
           
           {/* Contact information */}

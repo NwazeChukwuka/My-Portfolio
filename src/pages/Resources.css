@@ -13,12 +13,12 @@
 /* --- Re-using common styles for hero, title, subtitle from other pages --- */
 .resources-hero-section {
   position: relative;
-  padding: 100px var(--padding-x) 80px;
+  padding: 18px var(--padding-x) 44px;
   background: var(--background-color-dark);
-  min-height: 40vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   text-align: center;
   flex-direction: column;
 }
@@ -45,7 +45,7 @@
 .resources-list-section {
   padding-top: 50px;
   padding-bottom: 80px;
-  background-color: var(--background-color-light);
+  background-color: var(--background-color-dark);
 }
 
 .resources-grid-container {
@@ -137,20 +137,16 @@
 /* --- Resources CTA Section --- */
 .resources-cta-section {
   padding: 80px var(--padding-x);
-  background: linear-gradient(45deg, var(--neon-green-faded), var(--neon-purple-faded));
+  background-color: var(--background-color-dark);
   text-align: center;
 }
 
 .resources-cta-section .section-title {
-  color: #fff;
-}
-
-.resources-cta-section .section-title::after {
-  background: #fff;
+  color: var(--text-color-light);
 }
 
 .resources-cta-section .section-subtitle {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color-muted);
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -183,6 +179,9 @@
   .resources-page {
     padding-top: var(--navbar-height-mobile);
   }
+  .resources-hero-section {
+    padding: 14px var(--padding-x-mobile) 34px;
+  }
   .resources-hero-section .page-title {
     font-size: 3em;
   }
@@ -214,6 +213,9 @@
 }
 
 @media (max-width: 480px) {
+  .resources-hero-section {
+    padding: 10px var(--padding-x-mobile) 28px;
+  }
   .resources-list-section {
     padding: 40px var(--padding-x-mobile);
   }

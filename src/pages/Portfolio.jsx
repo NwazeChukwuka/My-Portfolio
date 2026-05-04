@@ -24,12 +24,15 @@ const Portfolio = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Combine projects from all roles into a single array
-  const allProjects = useMemo(() => ([
-    ...personalData.homePortfolioPreviews,
-    ...personalData.webDeveloper.projects,
-    ...personalData.dataAnalyst.projects,
-  ].filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)), [personalData]);
+  const allProjects = useMemo(() => {
+    const fromDb = personalData.projectsFromDb || [];
+    if (fromDb.length) return fromDb;
+    return [
+      ...(personalData.homePortfolioPreviews || []),
+      ...(personalData.webDeveloper?.projects || []),
+      ...(personalData.dataAnalyst?.projects || []),
+    ].filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
+  }, [personalData]);
 
   // Extract unique categories for filtering
   const categories = useMemo(
@@ -91,7 +94,11 @@ const Portfolio = () => {
             ))}
           </div>
         ) : (
-          <p className="no-projects-message" data-aos="fade-up">No projects found for this category.</p>
+          <p className="no-projects-message" data-aos="fade-up">
+            {allProjects.length === 0
+              ? 'No projects published yet. Add projects in Admin.'
+              : 'No projects found for this category.'}
+          </p>
         )}
       </section>
     </div>

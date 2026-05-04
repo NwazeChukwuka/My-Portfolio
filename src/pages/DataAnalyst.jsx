@@ -59,7 +59,7 @@ const DataAnalyst = () => {
     pricing = []
   } = dataAnalyst;
   const pageTitle = title;
-  const bio = introduction.join(' ');
+  const bio = (introduction || []).join(' ');
   const levelToPercent = { Expert: 95, Advanced: 85, Intermediate: 70, Beginner: 50 };
   const normalizedSkills = skills
     .map((item) => ({
@@ -76,7 +76,6 @@ const DataAnalyst = () => {
       <section className="role-hero-section" id="data-analyst-home">
         <div className="role-hero-content">
           <div className="role-hero-text" data-aos="fade-right">
-            <p className="role-greeting">My Expertise as a</p>
             <h1 className="role-hero-title">{pageTitle}</h1>
             <p className="role-hero-bio">{bio}</p>
             <div className="role-hero-buttons">
@@ -88,12 +87,13 @@ const DataAnalyst = () => {
           </div>
           <div className="role-hero-image" data-aos="fade-left">
             {/* Placeholder for a role-specific image */}
-            <img src="/assets/data-analyst-hero.jpg" alt="Data Analyst working with visualizations" className="role-img" />
+            <img src={dataAnalyst.heroImage || '/assets/Me 2.webp'} alt="Data Analyst working with visualizations" className="role-img" />
           </div>
         </div>
       </section>
 
       {/* --- Services Section --- */}
+      {services.length > 0 && (
       <section className="role-services-section common-section" id="services">
         <h2 className="section-title" data-aos="fade-up">Data Analysis Services</h2>
         <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">Turning Raw Data into Actionable Insights</p>
@@ -115,6 +115,7 @@ const DataAnalyst = () => {
           </Link>
         </div>
       </section>
+      )}
 
       {/* --- Projects Section --- */}
       <section className="role-projects-section common-section" id="projects">
@@ -172,6 +173,7 @@ const DataAnalyst = () => {
               percentage={skill.percentage}
               aos="zoom-in"
               aosDelay={index * 100}
+              animateOnClick
             />
           ))}
         </div>

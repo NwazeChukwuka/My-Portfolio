@@ -14,7 +14,7 @@ values
   ('general', jsonb_build_object(
     'full_name', 'Mazi Chukwuka',
     'tagline', 'Full-Stack Developer & Data Analyst',
-    'profile_picture', '/assets/mazi-profile.jpg',
+    'profile_picture', '/assets/Me 1.webp',
     'availability_badge', 'Open to collaborations and new projects'
   )),
   ('contact', jsonb_build_object(
