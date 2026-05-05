@@ -8,6 +8,9 @@ import {
   FaChevronLeft, FaChevronRight, FaFolder
 } from 'react-icons/fa';
 import usePortfolioContent from '../../hooks/usePortfolioContent';
+import { SidebarProfile } from './SidebarProfile';
+import { SidebarNavigation } from './SidebarNavigation';
+import { SidebarFooter } from './SidebarFooter';
 import './Sidebar.css';
 
 /**
@@ -210,7 +213,6 @@ const Sidebar = ({
       </li>
     );
   };
-  const iconOnlyThemeToggle = isCollapsed || isMobile;
 
   return (
     <>
@@ -221,110 +223,32 @@ const Sidebar = ({
         aria-label="Main navigation"
         aria-hidden={isMobile ? !isOpen : false}
       >
-        {/* Mobile close button */}
-        {isMobile && (
-          <button
-            className="sidebar-close-btn"
-            onClick={onClose}
-            aria-label="Close navigation menu"
-          >
-            <FaTimes />
-          </button>
-        )}
-
-        {/* Desktop collapse toggle */}
-        {!isMobile && (
-          <button
-            className="sidebar-collapse-btn"
-            onClick={onToggleCollapse}
-            aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {isCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
-          </button>
-        )}
-
         {/* Profile section */}
-        <div className="profile-section">
-          <div className="profile-avatar">
-            <NavLink
-              to="/admin/login"
-              className="profile-login-link"
-              onClick={handleLinkClick}
-              aria-label="Open admin login"
-              title="Admin login"
-            >
-              <img 
-                src={profilePic} 
-                alt={general.fullName || 'Profile'} 
-                className="profile-pic" 
-                onError={(e) => {
-                  e.target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`;
-                }}
-              />
-            </NavLink>
-            {!isCollapsed && (
-              <div className="profile-status" title="Available">
-                <div className="status-indicator online"></div>
-              </div>
-            )}
-          </div>
-          
-          {!isCollapsed && (
-            <>
-              <h2 className="profile-name">
-                {general.fullName || 'Your Name'}
-              </h2>
-              <p className="profile-title">
-                {general.tagline || 'Multidisciplinary Professional'}
-              </p>
-              
-              {/* Social links */}
-              <div className="social-links">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    aria-label={`Visit ${social.name} profile`}
-                    style={{ '--social-color': social.color }}
-                  >
-                    <social.icon />
-                  </a>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+        <SidebarProfile
+          isCollapsed={isCollapsed}
+          general={general}
+          contact={contact}
+          socialLinks={socialLinks}
+          handleLinkClick={handleLinkClick}
+        />
 
         {/* Navigation menu */}
-        <div className="nav-section">
-          <ul className="nav-menu">
-            {navItems.map(renderNavItem)}
-          </ul>
-        </div>
+        <SidebarNavigation
+          navItems={navItems}
+          isCollapsed={isCollapsed}
+          handleLinkClick={handleLinkClick}
+          renderNavItem={renderNavItem}
+        />
 
         {/* Theme toggle and footer */}
-        <div className="sidebar-footer">
-          <button
-            className={`theme-toggle ${iconOnlyThemeToggle ? 'icon-only' : ''}`}
-            onClick={onThemeToggle}
-            aria-label={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`}
-            title={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`}
-          >
-            {currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
-            {!iconOnlyThemeToggle && (
-              <span>{currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-            )}
-          </button>
-          
-          {!isCollapsed && (
-            <div className="sidebar-copyright">
-              <p>&copy; {new Date().getFullYear()} {general.fullName || 'Your Name'}</p>
-            </div>
-          )}
-        </div>
+        <SidebarFooter
+          isCollapsed={isCollapsed}
+          isMobile={isMobile}
+          currentTheme={currentTheme}
+          onThemeToggle={onThemeToggle}
+          onClose={onClose}
+          onToggleCollapse={onToggleCollapse}
+        />
       </nav>
     </>
   );

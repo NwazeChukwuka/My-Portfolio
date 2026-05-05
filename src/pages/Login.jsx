@@ -159,9 +159,6 @@ const Login = () => {
         {error && <p className="login-error">{error}</p>}
 
         <p className="login-back-link">
-          <Link to="/admin/setup">Create Admin Account</Link>
-        </p>
-        <p className="login-back-link">
           <Link to="/">Back to site</Link>
         </p>
       </div>
