@@ -122,6 +122,9 @@
   color: var(--neon-orange);
   font-size: 1.1em;
   flex-shrink: 0;
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 .contact-item a {
@@ -234,6 +237,9 @@
   position: relative;
   z-index: 1;
   transition: transform var(--transition-fast);
+  display: block;
+  width: 1em;
+  height: 1em;
 }
 
 .social-icon:hover::before {

@@ -46,6 +46,12 @@
   touch-action: manipulation;
 }
 
+.menu-toggle svg {
+  width: 1.25em;
+  height: 1.25em;
+  display: block;
+}
+
 .menu-toggle:hover {
   background-color: var(--neon-pink-faded);
   color: var(--neon-pink);

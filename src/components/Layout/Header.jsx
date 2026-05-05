@@ -26,8 +26,9 @@ const Header = ({ isMobile, onMenuClick, currentTheme, onThemeToggle }) => {
           onClick={onMenuClick}
           aria-label="Toggle navigation menu"
           aria-expanded="false"
+          aria-controls="sidebar"
         >
-          <FaBars />
+          <FaBars aria-hidden="true" />
         </button>
 
         {/* Logo/Brand */}
@@ -51,7 +52,7 @@ const Header = ({ isMobile, onMenuClick, currentTheme, onThemeToggle }) => {
           aria-label={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`}
           title={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`}
         >
-          {currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
+          {currentTheme === 'dark' ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}
         </button>
       </div>
     </header>

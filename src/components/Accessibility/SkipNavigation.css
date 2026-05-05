@@ -1,0 +1,86 @@
+/**
+ * Skip Navigation Styles
+ * Styles for accessibility skip links
+ */
+
+.skip-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-tooltip);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border: 2px solid var(--border-focus);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  top: 8px;
+  outline: none;
+  box-shadow: 0 0 0 4px var(--neon-pink-faded);
+}
+
+.skip-navigation.focused .skip-link {
+  top: 8px;
+}
+
+.skip-navigation.focused .skip-link:hover {
+  background: var(--background-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Ensure skip links are visible when focused */
+.skip-link:focus-visible {
+  top: 8px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .skip-link {
+    border-width: 3px;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+  
+  .skip-link:hover {
+    transform: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .skip-link {
+    font-size: var(--font-size-xs);
+    padding: 6px 12px;
+    left: 4px;
+  }
+  
+  .skip-link:focus,
+  .skip-navigation.focused .skip-link {
+    top: 6px;
+  }
+}

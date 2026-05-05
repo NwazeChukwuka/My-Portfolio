@@ -6,6 +6,9 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaGithub, F
 
 import { createContactMessage } from '../lib/portfolioApi';
 import usePortfolioContent from '../hooks/usePortfolioContent';
+import { validateContactForm } from '../lib/inputSanitization';
+import { getUserFriendlyError, getSuccessMessage, formatErrorForDisplay } from '../lib/errorMessages';
+import { logger } from '../lib/logger';
 
 import './Contact.css'; // Page-specific styles for Contact
 
@@ -42,37 +45,57 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const hasEmail = Boolean(formData.email.trim());
-    const hasPhone = Boolean(formData.phone.trim());
-
-    if (!hasEmail && !hasPhone) {
+    // Validate and sanitize all form data
+    const validation = validateContactForm(formData);
+    
+    if (!validation.isValid) {
+      // Show the first error message
+      const firstError = Object.values(validation.errors)[0];
+      const errorInfo = formatErrorForDisplay({
+        title: 'Validation Error',
+        message: firstError,
+        action: 'Check Form',
+        canRetry: true
+      });
+      
       setSubmitStatus({
         type: 'error',
-        text: 'Please provide at least one contact method: email or phone number.'
+        text: errorInfo.message,
+        title: errorInfo.title,
+        action: errorInfo.action
       });
       return;
     }
 
     try {
       await createContactMessage({
-        name: formData.name.trim(),
-        email: hasEmail ? formData.email.trim() : null,
-        phone: hasPhone ? formData.phone.trim() : null,
-        subject: formData.subject.trim(),
-        message: formData.message.trim(),
+        name: validation.sanitized.name,
+        email: validation.hasEmail ? validation.sanitized.email : null,
+        phone: validation.hasPhone ? validation.sanitized.phone : null,
+        subject: validation.sanitized.subject,
+        message: validation.sanitized.message,
         source: 'website_contact_form'
       });
 
+      const successInfo = getSuccessMessage('contact_form');
       setSubmitStatus({
         type: 'success',
-        text: 'Message sent successfully. I will get back to you soon.'
+        text: successInfo.message,
+        title: successInfo.title,
+        action: successInfo.action
       });
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
-      console.error('Contact form submit failed:', error);
+      logger.error('Contact form submit failed:', error);
+      
+      const userFriendlyError = getUserFriendlyError(error, { type: 'contact_form' });
+      const errorInfo = formatErrorForDisplay(userFriendlyError);
+      
       setSubmitStatus({
         type: 'error',
-        text: error.message || 'Unable to send your message right now. Please try again.'
+        text: errorInfo.message,
+        title: errorInfo.title,
+        action: errorInfo.action
       });
     }
   };
@@ -125,7 +148,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="contact-form-container card" data-aos="fade-left">
             <h2>Send Me a Message</h2>
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form onSubmit={handleSubmit} className="contact-form" noValidate id="contact-form">
               <div className="form-group">
                 <label htmlFor="name">Your Name</label>
                 <input
@@ -136,6 +159,8 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Enter your name"
                   required
+                  aria-describedby="name-error"
+                  autoComplete="name"
                 />
               </div>
               <div className="form-group">
@@ -147,6 +172,8 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
+                  aria-describedby="email-error"
+                  autoComplete="email"
                 />
               </div>
               <div className="form-group">
@@ -158,6 +185,8 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Enter your phone number"
+                  aria-describedby="phone-error"
+                  autoComplete="tel"
                 />
               </div>
               <div className="form-group">
@@ -170,6 +199,8 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Subject of your message"
                   required
+                  aria-describedby="subject-error"
+                  autoComplete="subject"
                 />
               </div>
               <div className="form-group">
@@ -182,14 +213,25 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Type your message here..."
                   required
+                  aria-describedby="message-error"
                 ></textarea>
               </div>
               <button type="submit" className="submit-button">Send Message</button>
               <p className="form-note">Provide at least one contact method: email or phone.</p>
               {submitStatus.text && (
-                <p className={`form-note ${submitStatus.type === 'error' ? 'error-note' : 'success-note'}`}>
-                  {submitStatus.text}
-                </p>
+                <div 
+                  className={`form-note ${submitStatus.type === 'error' ? 'error-note' : 'success-note'}`}
+                  role={submitStatus.type === 'error' ? 'alert' : 'status'}
+                  aria-live="polite"
+                >
+                  {submitStatus.title && <strong>{submitStatus.title}</strong>}
+                  <p>{submitStatus.text}</p>
+                  {submitStatus.action && (
+                    <small className="form-action-hint">
+                      💡 {submitStatus.action}
+                    </small>
+                  )}
+                </div>
               )}
             </form>
           </div>

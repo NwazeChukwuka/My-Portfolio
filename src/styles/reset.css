@@ -1,0 +1,135 @@
+/*
+ * CSS Reset & Normalize
+ * Modern CSS reset based on CSS Remedy and Normalize.css
+ */
+
+/* === BOX SIZING RULES === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* === REMOVE DEFAULT MARGINS === */
+* {
+  margin: 0;
+}
+
+/* === HTML & BODY === */
+html {
+  font-size: 16px; /* Base font size for rem calculations */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* Prevent font size adjustment on iOS */
+  -ms-text-size-adjust: 100%; /* Prevent font size adjustment on Windows */
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* === MEDIA ELEMENTS === */
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* SVG icons should preserve their natural display for proper centering */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === FORM ELEMENTS === */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* === TYPOGRAPHY IMPROVEMENTS === */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+/* === LIST RESETS === */
+ul,
+ol {
+  list-style: none;
+}
+
+/* === TABLE RESETS === */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* === ACCESSIBILITY === */
+:focus-visible {
+  outline: 2px solid var(--border-focus, Highlight);
+  outline-offset: 2px;
+}
+
+/* === HIDDEN ELEMENTS === */
+[hidden] {
+  display: none !important;
+}
+
+/* === REDUCE MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === HIGH CONTRAST MODE === */
+@media (prefers-contrast: high) {
+  :root {
+    --border-width: 2px;
+  }
+}
+
+/* === FORCED COLORS === */
+@media (forced-colors: active) {
+  a {
+    color: LinkText;
+  }
+  
+  a:visited {
+    color: VisitedText;
+  }
+  
+  a:focus {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}

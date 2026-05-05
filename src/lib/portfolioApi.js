@@ -1,17 +1,21 @@
 import { supabase } from './supabaseClient';
+import { createRetryableSupabaseOperation } from './retryUtils';
 
 // Example data access layer for dynamic portfolio content.
 // Update table/storage names to match your Supabase schema.
 
 export async function getProjects() {
   if (!supabase) throw new Error('Supabase is not configured.');
-  const { data, error } = await supabase
-    .from('projects')
-    .select('*')
-    .order('created_at', { ascending: false });
+  
+  const operation = createRetryableSupabaseOperation(
+    () => supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false }),
+    { maxRetries: 3, initialDelay: 1000 }
+  );
 
-  if (error) throw error;
-  return data;
+  return operation();
 }
 
 export async function updateProject(projectId, payload) {
@@ -46,14 +50,16 @@ export async function createContactMessage(payload) {
     throw new Error('Supabase is not configured. Add your environment keys to enable contact submissions.');
   }
 
-  const { data, error } = await supabase
-    .from('contact_messages')
-    .insert([payload])
-    .select()
-    .single();
+  const operation = createRetryableSupabaseOperation(
+    () => supabase
+      .from('contact_messages')
+      .insert([payload])
+      .select()
+      .single(),
+    { maxRetries: 3, initialDelay: 1000 }
+  );
 
-  if (error) throw error;
-  return data;
+  return operation();
 }
 
 export async function getContactMessages() {
@@ -104,13 +110,16 @@ export async function upsertSiteSetting(key, value) {
 
 export async function getBlogPosts() {
   if (!supabase) throw new Error('Supabase is not configured.');
-  const { data, error } = await supabase
-    .from('blog_posts')
-    .select('*')
-    .order('published_at', { ascending: false });
+  
+  const operation = createRetryableSupabaseOperation(
+    () => supabase
+      .from('blog_posts')
+      .select('*')
+      .order('published_at', { ascending: false }),
+    { maxRetries: 3, initialDelay: 1000 }
+  );
 
-  if (error) throw error;
-  return data;
+  return operation();
 }
 
 export async function getBlogPostBySlug(slug) {
