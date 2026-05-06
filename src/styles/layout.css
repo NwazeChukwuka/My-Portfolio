@@ -71,6 +71,32 @@
   .content-wrapper {
     padding: 0 var(--padding-x-mobile);
   }
+  
+  /* Mobile image constraints */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Mobile content adjustments */
+  .content-wrapper > * {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Mobile header improvements */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+  }
+  
+  .main-content {
+    margin-top: var(--header-height-mobile);
+  }
 }
 
 /* === GRID SYSTEM === */

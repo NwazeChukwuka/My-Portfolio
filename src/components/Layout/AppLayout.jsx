@@ -107,7 +107,7 @@ export function AppLayout({ children }) {
       <div 
         className={`main-layout ${isSidebarOpen ? 'sidebar-open' : ''} ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}
       >
-        {/* Header - only shows hamburger on mobile, hidden on desktop */}
+        {/* Header - shows hamburger on mobile, hidden on desktop */}
         <Header
           isMobile={isMobile}
           onMenuClick={toggleSidebar}
