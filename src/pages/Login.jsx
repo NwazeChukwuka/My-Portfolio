@@ -11,6 +11,13 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
+  // Debug email changes
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    console.log('Email input changed:', value);
+    setEmail(value);
+  };
+
   useEffect(() => {
     if (!supabase) return undefined;
     let mounted = true;
@@ -52,7 +59,7 @@ const Login = () => {
       if (signInError) throw signInError;
 
       setMessage('Login successful.');
-      navigate('/admin');
+      navigate('https://mazichukwuka.vercel.app/admin');
     } catch (err) {
       setError(err.message || 'Unable to log in. Check your credentials.');
     } finally {
@@ -61,6 +68,7 @@ const Login = () => {
   };
 
   const handleMagicLink = async () => {
+    console.log('Magic link button clicked, email:', email);
     setLoading(true);
     setError('');
     setMessage('');
@@ -73,7 +81,7 @@ const Login = () => {
       const { error: otpError } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/admin`,
+          emailRedirectTo: 'https://mazichukwuka.vercel.app/admin',
         },
       });
       if (otpError) throw otpError;
@@ -86,6 +94,7 @@ const Login = () => {
   };
 
   const handleSendReset = async () => {
+    console.log('Reset password button clicked, email:', email);
     setLoading(true);
     setError('');
     setMessage('');
@@ -95,7 +104,7 @@ const Login = () => {
         throw new Error('Supabase is not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file.');
       }
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/admin/reset-password`,
+        redirectTo: 'https://mazichukwuka.vercel.app/admin/reset-password',
       });
       if (resetError) throw resetError;
       setMessage('Password reset email sent. Check your inbox.');
@@ -118,7 +127,7 @@ const Login = () => {
             id="login-email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             placeholder="myprofile@chukwuka.com"
             required
           />
