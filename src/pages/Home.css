@@ -703,6 +703,20 @@
   .hero-section {
     padding: 18px var(--padding-x-mobile) 44px;
   }
+  
+  .hero-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .hero-text {
+    order: 2; /* Move text below image on mobile */
+  }
+  
+  .hero-image {
+    order: 1; /* Move image above text on mobile */
+  }
+  
   .hero-title {
     font-size: 2.8em;
   }
@@ -711,6 +725,15 @@
   }
   .hero-bio {
     font-size: 1em;
+    margin-bottom: 20px;
+  }
+  
+  .hero-stats {
+    margin-bottom: 20px;
+  }
+  
+  .hero-buttons {
+    margin-bottom: 20px;
   }
   .profile-img {
     width: 330px;
@@ -774,6 +797,11 @@
   .hero-section {
     padding: 14px var(--padding-x-mobile) 38px;
   }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 skills per row on very small screens */
+    gap: 15px;
+  }
   .hero-title {
     font-size: 2.2em;
   }
@@ -805,9 +833,13 @@
   /* Grids */
   .services-grid,
   .portfolio-grid,
-  .skills-grid,
   .blog-teasers-grid {
     grid-template-columns: 1fr; /* Stack all cards vertically */
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr); /* Show 3 skills per row on mobile */
+    gap: 20px;
   }
 
   /* Timeline */
