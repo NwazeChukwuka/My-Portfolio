@@ -131,6 +131,11 @@
 @media (max-width: 768px) {
   .header {
     display: block; /* Show header on mobile */
+    z-index: var(--z-sticky);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }
 

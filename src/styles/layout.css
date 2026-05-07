@@ -65,7 +65,7 @@
 /* === RESPONSIVE LAYOUT === */
 @media (max-width: 768px) {
   .main-layout {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
   
   .content-wrapper {

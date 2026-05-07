@@ -710,11 +710,11 @@
   }
   
   .hero-text {
-    order: 2; /* Move text below image on mobile */
+    order: 1; /* Keep text first on mobile */
   }
   
   .hero-image {
-    order: 1; /* Move image above text on mobile */
+    order: 2; /* Move image after name/title/bio on mobile */
   }
   
   .hero-title {
