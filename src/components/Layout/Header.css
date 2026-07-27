@@ -4,7 +4,7 @@
  */
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -13,7 +13,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-primary);
-  z-index: var(--z-sticky);
+  z-index: 1001; /* Above sidebar and overlay */
   display: none; /* Hidden by default */
 }
 
@@ -76,11 +76,10 @@
   letter-spacing: -0.02em;
   transition: color var(--transition-fast);
   
-  /* Ensure logo doesn't get too wide */
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* Allow full name display without truncation */
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .header-logo:hover {
@@ -145,8 +144,8 @@
   }
   
   .header-logo {
-    font-size: 1.25rem;
-    max-width: 150px;
+    font-size: 1.1rem;
+    /* Remove max-width to allow full name display */
   }
   
   .menu-toggle,

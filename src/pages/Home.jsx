@@ -87,6 +87,26 @@ const Home = () => {
             <h2 className="hero-subtitle">
               <span className="typing-animation">{blendedTitle}</span>
             </h2>
+          </div>
+
+          <div className="hero-image" data-aos="fade-left" data-aos-delay="200">
+            <div className="image-container layered-hero-visual">
+              <img src={profilePicture} alt={name} className="profile-img" />
+              <div className="hero-proof-card card">
+                <p>Worked on 100+ projects.</p>
+                <div className="hero-proof-footer">
+                  <div className="hero-proof-avatars">
+                    <span className="hero-proof-avatar">M</span>
+                    <span className="hero-proof-avatar">A</span>
+                    <span className="hero-proof-avatar">D</span>
+                  </div>
+                  <strong>50+ Clients</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-content-extended" data-aos="fade-up" data-aos-delay="400">
             <p className="hero-bio">{shortBio}</p>
             
             <div className="hero-stats" data-aos="fade-up" data-aos-delay="300">
@@ -96,7 +116,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+            <div className="hero-buttons">
               <Button to="/portfolio" variant="primary" className="pulse-animation">
                 View Work
               </Button>
@@ -105,7 +125,7 @@ const Home = () => {
               </Button>
             </div>
 
-            <div className="hero-social-links" data-aos="fade-up" data-aos-delay="500">
+            <div className="hero-social-links">
               <p className="social-label">Connect with me:</p>
               <div className="social-icons">
                 {contact.socialLinks.linkedin && (
@@ -133,23 +153,6 @@ const Home = () => {
                     <FaFacebookF />
                   </a>
                 )}
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-image" data-aos="fade-left" data-aos-delay="200">
-            <div className="image-container layered-hero-visual">
-              <img src={profilePicture} alt={name} className="profile-img" />
-              <div className="hero-proof-card card">
-                <p>Worked on 100+ projects.</p>
-                <div className="hero-proof-footer">
-                  <div className="hero-proof-avatars">
-                    <span className="hero-proof-avatar">M</span>
-                    <span className="hero-proof-avatar">A</span>
-                    <span className="hero-proof-avatar">D</span>
-                  </div>
-                  <strong>50+ Clients</strong>
-                </div>
               </div>
             </div>
           </div>

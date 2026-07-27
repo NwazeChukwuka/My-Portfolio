@@ -102,6 +102,15 @@
   width: 100%;
 }
 
+.role-hero-extended {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
 .role-hero-text {
   text-align: center;
   flex: 1;
@@ -137,10 +146,12 @@
 }
 
 .role-hero-image {
-  flex: 1;
+  flex: 1; /* Takes remaining space */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* Prevent shrinking */
+  min-width: 350px; /* Ensure minimum width */
 }
 
 .role-hero-image .role-img {
@@ -152,6 +163,9 @@
   border: 5px solid var(--neon-purple); /* Accent border */
   box-shadow: 0 0 30px var(--neon-purple-faded);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0; /* Prevent image compression */
+  min-width: 350px; /* Ensure minimum width */
+  min-height: 350px; /* Ensure minimum height */
 }
 
 .role-hero-image .role-img:hover {
@@ -425,14 +439,33 @@
     text-align: left;
   }
   .role-hero-content {
-    flex-direction: row;
-    text-align: left;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start; /* Text on left, image on right */
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .role-hero-text {
     align-items: flex-start;
+    flex: none; /* Prevent compression */
+    max-width: 500px;
+    min-width: 400px;
+  }
+  .role-hero-extended {
+    order: unset; /* Reset order for desktop */
+    align-items: flex-start;
+    text-align: left;
+    flex: none;
+    max-width: 500px;
   }
   .role-hero-buttons {
     justify-content: flex-start;
+  }
+  .role-hero-image .role-img {
+    width: 350px;
+    height: 350px;
   }
 }
 
@@ -465,6 +498,21 @@
     width: 250px;
     height: 250px;
     object-position: top center;
+  }
+  .role-hero-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .role-hero-text {
+    order: 1; /* Title first */
+    text-align: center;
+  }
+  .role-hero-image {
+    order: 2; /* Image second */
+  }
+  .role-hero-extended {
+    order: 3; /* Bio and buttons last */
+    text-align: center;
   }
   .role-hero-buttons {
     flex-direction: column;

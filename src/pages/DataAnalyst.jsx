@@ -77,6 +77,12 @@ const DataAnalyst = () => {
         <div className="role-hero-content">
           <div className="role-hero-text" data-aos="fade-right">
             <h1 className="role-hero-title">{pageTitle}</h1>
+          </div>
+          <div className="role-hero-image" data-aos="fade-left">
+            {/* Placeholder for a role-specific image */}
+            <img src={dataAnalyst.heroImage || '/assets/Me 2.webp'} alt="Data Analyst working with visualizations" className="role-img" />
+          </div>
+          <div className="role-hero-extended" data-aos="fade-up" data-aos-delay="200">
             <p className="role-hero-bio">{bio}</p>
             <div className="role-hero-buttons">
               <Button to="/contact" variant="primary">Unlock Your Data</Button>
@@ -84,10 +90,6 @@ const DataAnalyst = () => {
                 Download Data Analyst CV <FaDownload />
               </Button>
             </div>
-          </div>
-          <div className="role-hero-image" data-aos="fade-left">
-            {/* Placeholder for a role-specific image */}
-            <img src={dataAnalyst.heroImage || '/assets/Me 2.webp'} alt="Data Analyst working with visualizations" className="role-img" />
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useAppStore } from '../../stores/useAppStore';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import MobileNavigation from './MobileNavigation';
 import Footer from './Footer';
 import SkipNavigation from '../Accessibility/SkipNavigation';
 import { NotificationSystem } from '../UI/NotificationSystem';
@@ -86,7 +87,7 @@ export function AppLayout({ children }) {
       {/* Mobile overlay */}
       {isMobile && isSidebarOpen && (
         <div 
-          className="sidebar-overlay"
+          className="sidebar-overlay active"
           onClick={closeSidebar}
           aria-label="Close navigation menu"
         />
@@ -102,6 +103,14 @@ export function AppLayout({ children }) {
         currentTheme={theme}
         onThemeToggle={toggleTheme}
       />
+
+      {/* Mobile Navigation - mobile-specific navigation */}
+      {isMobile && (
+        <MobileNavigation
+          isOpen={isSidebarOpen}
+          onClose={closeSidebar}
+        />
+      )}
 
       {/* Main layout */}
       <div 
