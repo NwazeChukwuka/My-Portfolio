@@ -16,10 +16,12 @@
   z-index: 998; /* Below header and sidebar, above content */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  display: none; /* Completely hidden when not open */
 }
 
 .mobile-navigation.open {
   transform: translateX(0);
+  display: block; /* Show when open */
 }
 
 .mobile-nav {

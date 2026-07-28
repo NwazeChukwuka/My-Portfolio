@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  pointer-events: auto; /* Ensure clicks work */
 }
 
 .menu-toggle {
@@ -44,6 +45,9 @@
     background-color var(--transition-fast),
     transform var(--transition-fast);
   touch-action: manipulation;
+  position: relative;
+  z-index: 1002; /* Ensure button is clickable */
+  pointer-events: auto; /* Ensure clicks are registered */
 }
 
 .menu-toggle svg {

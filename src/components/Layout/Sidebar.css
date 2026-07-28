@@ -32,13 +32,7 @@
 /* === MOBILE STATES === */
 @media (max-width: 768px) {
   .sidebar {
-    transform: translateX(-100%);
-    box-shadow: var(--shadow-2xl);
-    z-index: 1000; /* Higher than overlay to ensure visibility */
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
+    display: none; /* Completely hide sidebar on mobile */
   }
 }
 
